@@ -1,0 +1,106 @@
+/* estilos generales */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+body {
+    /* background-color: linear-gradient(to right, #757F9A, #ececec); */
+    background-color: #ececec;
+}
+a, a:visited {
+    color: #303030;
+}
+a:hover {
+    color: #696969;
+}
+#site-container {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px #303030;
+}
+
+/* HEADER */
+header {
+    height: 60px;
+    background-color: #6b6b6b;
+}
+
+#logo {
+    float: left;
+}
+
+#logo a {
+    display: block;
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+#logo img {
+    width: 150px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+/* MENU */
+#menu {
+    height: 60px;
+    float: right;
+}
+#menu ul {
+    list-style: none;
+    display: flex;
+}
+#menu li {
+    display: inline-block;
+    height: 60px;
+}
+#menu a,a:visited {
+    display: block;
+    line-height: 1;
+    font-size: 16px;
+    padding: 22px;
+    color: #ececec;
+    text-decoration: none;
+    text-align: center;
+}
+#menu a:hover {
+    background-color: black;
+    color: white;
+}
+
+/* CONTENEDOR DE ASIDE Y CONTENT */
+
+#container {
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* BARRA LATERAL */
+aside {
+    float: left;
+    width: 20%;
+    min-height: 500px;
+    margin-top: 20px;
+    margin-left: 10px;
+    background: red;
+    outline: 2px solid darkblue;
+}
+
+#login {
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+    padding: 10px;
+    background-color: blue;
+    outline: 2px solid black;
+}
+
+/* CONTENIDO */
+
+.product img {
+    width: 100px;
+}
