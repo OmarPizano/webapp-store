@@ -47,6 +47,7 @@ header {
     background-color: lightgray;
     display: flex;
     justify-content: space-between;
+    border-bottom: 4px solid black;
 }
 #logo a {
     display: block;
@@ -87,6 +88,7 @@ header {
 
 main {
     margin: 0px auto;
+    padding: 10px;
     overflow: hidden;
     background-color: #ffffff;
     display: flex;
@@ -190,4 +192,12 @@ aside {
 .product .btn-normal {
     width: 10%;
     margin-left: 10px;
+}
+
+/* FOOTER */
+footer {
+    background-color: lightgrey;
+    border-top: 4px solid black;
+    text-align: center;
+    padding: 10px;
 }
