@@ -8,12 +8,6 @@ body {
     /* background-color: linear-gradient(to right, #757F9A, #ececec); */
     background-color: #ececec;
 }
-a, a:visited {
-    color: #303030;
-}
-a:hover {
-    color: #696969;
-}
 #site-container {
     width: 80%;
     margin: 0 auto;
@@ -24,7 +18,6 @@ a:hover {
 .btn {
     display: block;
     padding: 5px;
-    font-size: 15px;
     text-decoration: none;
     text-align: center;
     margin-bottom: 5px;
@@ -78,7 +71,7 @@ header {
     display: inline-block;
     height: 60px;
 }
-#menu a,a:visited {
+#menu a, #menu a:visited {
     display: block;
     line-height: 1;
     font-size: 16px;
@@ -105,6 +98,7 @@ aside {
     padding: 10px;
     margin: 10px;
     background-color: lightgray;
+    box-shadow: 1px 1px 7px black;
 }
 #user {
     padding: 10px;
@@ -121,12 +115,79 @@ aside {
     width: 100%;
     box-sizing: border-box;
 }
+#user .btn {
+    font-size: 15px;
+}
 
-/* CONTENIDO */
-#products {
+/* PRODUCTOS */
+#content {
     width: 80%;
     padding: 20px;
 }
+#content h1 {
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 20px;
+}
+#product-list {
+    min-height: 500px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.product {
+    background-color: lightgray;
+    width: 200px;
+    margin: 10px;
+    font-size: 12px;
+    box-shadow: 1px 1px 7px black;
+    /* height: fit-content; */
+}
+.product-details {
+    padding: 10px;
+}
 .product img {
-    width: 100px;
+    display: block;
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.product-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.price-current {
+    font-size: 20px;
+    font-weight: bold;
+}
+.price-discount {
+    font-size: 13px;
+    font-style: italic;
+}
+.price-original {
+    font-size: 13px;
+    text-decoration: line-through; 
+    text-align: start;
+    margin-bottom: 10px;
+}
+.product-desc {
+    font-size: 12px; 
+}
+.product-btns {
+    display: flex;
+    margin-top: 5px;
+} 
+.product .btn {
+    font-size: 10px;
+}
+.product .btn-black {
+    width: 80%;
+}
+.product .btn-normal {
+    width: 10%;
+    margin-left: 10px;
 }
