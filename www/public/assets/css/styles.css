@@ -20,34 +20,55 @@ a:hover {
     box-shadow: 0px 0px 10px #303030;
 }
 
+/* BOTONES */
+.btn {
+    display: block;
+    padding: 5px;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.btn:hover {
+    background-color: black;
+    color: white;
+}
+.btn-normal {
+    color: black;
+    background-color: transparent;
+    border: 1px solid black;
+}
+.btn-black {
+    color: white;
+    background-color: black;
+    border: 1px solid black;
+}
+.btn-black:hover {
+    background-color: white;
+    color: black;
+}
+
 /* HEADER */
 header {
     height: 60px;
-    background-color: #6b6b6b;
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-between;
 }
-
-#logo {
-    float: left;
-}
-
 #logo a {
     display: block;
     width: 150px;
     height: 40px;
-    padding: 10px;
+    padding: 10px 30px;
     margin: 0 auto;
 }
-
 #logo img {
     width: 150px;
     height: 40px;
     margin: 0 auto;
 }
-
-/* MENU */
 #menu {
     height: 60px;
-    float: right;
 }
 #menu ul {
     list-style: none;
@@ -62,7 +83,7 @@ header {
     line-height: 1;
     font-size: 16px;
     padding: 22px;
-    color: #ececec;
+    color: black;
     text-decoration: none;
     text-align: center;
 }
@@ -71,36 +92,41 @@ header {
     color: white;
 }
 
-/* CONTENEDOR DE ASIDE Y CONTENT */
-
-#container {
+main {
     margin: 0px auto;
     overflow: hidden;
     background-color: #ffffff;
+    display: flex;
 }
 
 /* BARRA LATERAL */
 aside {
-    float: left;
     width: 20%;
-    min-height: 500px;
-    margin-top: 20px;
-    margin-left: 10px;
-    background: red;
-    outline: 2px solid darkblue;
-}
-
-#login {
-    display: block;
-    width: 90%;
-    margin: 5px auto;
     padding: 10px;
-    background-color: blue;
-    outline: 2px solid black;
+    margin: 10px;
+    background-color: lightgray;
+}
+#user {
+    padding: 10px;
+}
+#login-form {
+    margin-bottom: 20px;
+}
+#login-form h3, #login-form input {
+    margin-bottom: 5px;
+    text-align: center;
+}
+#login-form input {
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* CONTENIDO */
-
+#products {
+    width: 80%;
+    padding: 20px;
+}
 .product img {
     width: 100px;
 }

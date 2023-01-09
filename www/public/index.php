@@ -23,23 +23,25 @@
                     </ul>
                 </nav>
             </header>
-            <div id="container">
+            <main>
                 <!-- barra lateral -->
                 <aside>
-                    <div id="login">
-                        <h3>Iniciar Sesión</h3>
-                        <form action="#" method="POST">
-                            <input type="email" name="email" placeholder="Ingresa tu email">
-                            <input type="password" name="password" placeholder="Ingresa tu contraseña">
-                            <input type="submit" value="Entrar">
-                        </form>
-                        <a href="#">Mis pedidos</a>
-                        <a href="#">Mi perfil</a>
-                        <a href="#">Cerrar sesión</a>
+                    <div id="user">
+                        <div id="login-form">
+                            <h3>Iniciar Sesión</h3>
+                            <form action="#" method="POST">
+                                <input type="email" name="email" placeholder="Ingresa tu email">
+                                <input type="password" name="password" placeholder="Ingresa tu contraseña">
+                                <input type="submit" class="btn btn-black" value="Entrar">
+                            </form>
+                        </div>
+                        <a href="#" class="btn btn-normal">Ver el carrito</a>
+                        <a href="#" class="btn btn-normal">Mi perfil</a>
+                        <a href="#" class="btn btn-normal">Cerrar sesión</a>
                     </div>
                 </aside>
                 <!-- contenido -->
-                <div id="content">
+                <section id="products">
                     <div class="product">
                         <img src="assets/logo.png" alt="item">
                         <h4>Nombre Producto</h4>
@@ -61,12 +63,12 @@
                         <a href="#">Comprar</a>
                         <a href="#">Carrito</a>
                     </div>
-                </div>
+                </section>
                 <!-- footer -->
-                <footer>
-                    <p>Omar Pizano &copy <?=date('Y')?></p>
-                </footer>
-            </div>
+            </main>
+            <footer>
+                <p>Omar Pizano &copy <?=date('Y')?></p>
+            </footer>
         </div>
     </body>
 </html>
