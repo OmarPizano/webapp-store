@@ -1,0 +1,16 @@
+{
+    "name": "omarpizano/tiendaonline",
+    "description": "Prototipo de ecommerce",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "tienda\\": "tienda/"
+        }
+    },
+    "authors": [
+        {
+            "name": "OmarPizano"
+        }
+    ],
+    "require": {}
+}
