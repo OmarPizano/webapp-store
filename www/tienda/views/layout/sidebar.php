@@ -13,3 +13,4 @@
         <a href="#" class="btn btn-normal">Cerrar sesión</a>
     </div>
 </aside>
+<section id="content">
