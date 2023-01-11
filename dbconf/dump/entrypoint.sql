@@ -8,6 +8,7 @@ CREATE TABLE users (
     user_password   VARCHAR(60) NOT NULL,
     user_role       VARCHAR(6) NOT NULL,
     user_image      VARCHAR(255),
+    user_address    VARCHAR(255),
     CONSTRAINT pk_users PRIMARY KEY (id),
     CONSTRAINT uq_user_name UNIQUE(user_name),
     CONSTRAINT uq_user_email UNIQUE(user_email)
@@ -34,16 +35,16 @@ INSERT INTO users VALUES (
     NULL
 );
 
-CREATE TABLE addresses (
-    id              INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
-    user_id         INT(4) UNSIGNED ZEROFILL NOT NULL,
-    address_state   VARCHAR(20) NOT NULL,
-    address_city    VARCHAR(20) NOT NULL,
-    address_street  VARCHAR(30) NOT NULL,
-    address_number  VARCHAR(5) NOT NULL,
-    CONSTRAINT pk_addresses PRIMARY KEY (id),
-    CONSTRAINT fk_address_user FOREIGN KEY (user_id) REFERENCES users (id)
-);
+-- CREATE TABLE addresses (
+--     id              INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
+--     user_id         INT(4) UNSIGNED ZEROFILL NOT NULL,
+--     address_state   VARCHAR(20) NOT NULL,
+--     address_city    VARCHAR(20) NOT NULL,
+--     address_street  VARCHAR(30) NOT NULL,
+--     address_number  VARCHAR(5) NOT NULL,
+--     CONSTRAINT pk_addresses PRIMARY KEY (id),
+--     CONSTRAINT fk_address_user FOREIGN KEY (user_id) REFERENCES users (id)
+-- );
 
 CREATE TABLE categories (
     id              INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
