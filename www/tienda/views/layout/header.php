@@ -9,11 +9,11 @@
     <div id="site-container">
         <header>
             <div id="logo">
-                <a href="index.php"><img src="<?=BASE_URL?>/public/assets/logo.png" alt="logo"></a>
+                <a href="<?=BASE_URL?>"><img src="<?=BASE_URL?>/public/assets/logo.png" alt="logo"></a>
             </div>
             <nav id="menu">
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="<?=BASE_URL?>">Inicio</a></li>
                 <li><a href="#">Categoría 1</a></li>
                 <li><a href="#">Categoría 2</a></li>
                 <li><a href="#">Categoría 3</a></li>
