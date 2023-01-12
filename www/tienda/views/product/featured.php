@@ -1,7 +1,7 @@
 <h1>Productos Destacados</h1>
 <div id="product-list">
     <div class="product">
-        <img src="assets/logo.png" alt="item">
+        <img src="<?=BASE_URL?>/public/assets/logo.png" alt="item">
         <div class="product-details">
             <div class="product-price">
                 <p class="price-current">$1000.00</p>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="product">
-        <img src="assets/logo.png" alt="item">
+        <img src="<?=BASE_URL?>/public/assets/logo.png" alt="item">
         <div class="product-details">
             <div class="product-price">
                 <p class="price-current">$1000.00</p>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="product">
-        <img src="assets/logo.png" alt="item">
+        <img src="<?=BASE_URL?>/public/assets/logo.png" alt="item">
         <div class="product-details">
             <div class="product-price">
                 <p class="price-current">$1000.00</p>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="product">
-        <img src="assets/logo.png" alt="item">
+        <img src="<?=BASE_URL?>/public/assets/logo.png" alt="item">
         <div class="product-details">
             <div class="product-price">
                 <p class="price-current">$1000.00</p>
@@ -69,7 +69,7 @@
         </div>
     </div>
     <div class="product">
-        <img src="assets/logo.png" alt="item">
+        <img src="<?=BASE_URL?>/public/assets/logo.png" alt="item">
         <div class="product-details">
             <div class="product-price">
                 <p class="price-current">$1000.00</p>

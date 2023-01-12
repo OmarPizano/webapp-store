@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="<?=BASE_URL?>/public/assets/css/styles.css">
     <title>Tienda Online</title>
 </head>
 <body>
     <div id="site-container">
         <header>
             <div id="logo">
-                <a href="index.php"><img src="assets/logo.png" alt="logo"></a>
+                <a href="index.php"><img src="<?=BASE_URL?>/public/assets/logo.png" alt="logo"></a>
             </div>
             <nav id="menu">
             <ul>
