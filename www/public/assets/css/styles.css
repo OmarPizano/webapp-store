@@ -230,3 +230,17 @@ label[for="user_image"] {
     width: 50%;
     margin: 0 auto;
 }
+
+/* Información */
+.info-page {
+    display: flex;
+    align-items: center;
+}
+.info-page img {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+}
+.info-page p {
+    margin: 20px;
+}
