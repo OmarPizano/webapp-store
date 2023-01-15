@@ -1,21 +1,17 @@
 <?
 namespace tienda\controllers;
+use tienda\models\RegisterModel;
 
 class UserController
 {
-    public function index()
-    {
-        echo 'UserController -> index()<br>';
-    }
     public function register()
     {
         require_once('../tienda/views/user/register.php');
     }
     public function save()
     {
-        if (isset($_POST)) {
-            var_dump($_POST);
-        }
+        $model = new RegisterModel;
+        $model->load($_POST);
+        $model->save();
     }
-
 }
