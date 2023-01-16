@@ -8,9 +8,7 @@
                 <input type="submit" class="btn btn-black" value="Entrar">
             </form>
         </div>
-        <a href="#" class="btn btn-normal">Ver el carrito</a>
-        <a href="#" class="btn btn-normal">Mi perfil</a>
-        <a href="#" class="btn btn-normal">Cerrar sesión</a>
+        <a href="<?BASE_URL?>/user/register" class="btn btn-normal">Registrarse</a>
     </div>
 </aside>
 <section id="content">
