@@ -1,12 +1,13 @@
 <?
 namespace tienda\controllers;
+use tienda\core\View;
 use tienda\models\RegisterModel;
 
 class UserController
 {
     public function register()
     {
-        require_once('../tienda/views/user/register.php');
+        View::render('user/register');
     }
     public function save()
     {

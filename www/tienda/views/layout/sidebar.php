@@ -1,14 +1,13 @@
-<aside>
-    <div id="user">
-        <div id="login-form">
-            <h3>Iniciar Sesión</h3>
-            <form action="#" method="POST">
-                <input type="email" name="email" placeholder="Ingresa tu email">
-                <input type="password" name="password" placeholder="Ingresa tu contraseña">
-                <input type="submit" class="btn btn-black" value="Entrar">
-            </form>
-        </div>
-        <a href="<?BASE_URL?>/user/register" class="btn btn-normal">Registrarse</a>
-    </div>
-</aside>
-<section id="content">
+<?
+use tienda\core\ui\button\Button;
+use tienda\core\ui\form\Form;
+use tienda\core\ui\layout\Sidebar;
+
+Sidebar::begin('Iniciar sesión');
+Form::begin('#', 'POST');
+Form::input('email', 'email', 'Ingresa tu email');
+Form::input('password', 'password', 'Ingresa tu contraseña');
+Form::submit('Entrar');
+Button::normal(BASE_URL . '/user/register', 'Registrar');
+Form::end();
+Sidebar::end();

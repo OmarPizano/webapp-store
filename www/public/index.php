@@ -3,9 +3,6 @@ require('../tienda/config/app_config.php');
 require(BASE_DIR . '/tienda/config/db.php');
 require(BASE_DIR . '/vendor/autoload.php');
 
-require(BASE_DIR . '/tienda/views/layout/header.php');
-require(BASE_DIR . '/tienda/views/layout/sidebar.php');
-
 use tienda\core\Request;
 
 // Controlador frontal
@@ -34,5 +31,3 @@ if ($mvc) {
     $controller = new tienda\controllers\ProductController();
     $controller->featured();
 }
-
-require(BASE_DIR . '/tienda/views/layout/footer.php');

@@ -1,10 +1,11 @@
 <?
 namespace tienda\controllers;
+use tienda\core\View;
 
 class ProductController
 {
     public function featured()
     {
-        require('../tienda/views/product/featured.php');
+        View::render('product/featured');
     }
 }
