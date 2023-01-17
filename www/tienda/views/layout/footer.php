@@ -1,1 +1,0 @@
-<p>Compañía LOGO &copy 2023</p>
