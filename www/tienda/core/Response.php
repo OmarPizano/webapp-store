@@ -3,8 +3,8 @@ namespace tienda\core;
 
 class Response
 {
-    private string $content;
-    private int $status;
+    public string $content;
+    public int $status;
 
     public function __construct(string $content = '', int $status = 200) {
         $this->content = $content;
