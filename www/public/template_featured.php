@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="assets/css/styles.css">
-        <title>Tienda Online</title>
+        <title>Tienda LOGO</title>
     </head>
     <body>
         <!-- header -->
@@ -15,11 +15,11 @@
                 <!-- menu -->
                 <nav id="menu">
                     <ul>
-                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Buscar</a></li>
                         <li><a href="#">Categoría 1</a></li>
                         <li><a href="#">Categoría 2</a></li>
                         <li><a href="#">Categoría 3</a></li>
-                        <li><a href="#">Categoría 4</a></li>
+                        <li><a href="#">Acerca De</a></li>
                     </ul>
                 </nav>
             </header>
@@ -27,23 +27,19 @@
                 <!-- barra lateral -->
                 <aside>
                     <div id="user">
-                        <div id="login-form">
-                            <h3>Iniciar Sesión</h3>
-                            <form action="#" method="POST">
-                                <input type="email" name="email" placeholder="Ingresa tu email">
-                                <input type="password" name="password" placeholder="Ingresa tu contraseña">
-                                <input type="submit" class="btn btn-black" value="Entrar">
-                            </form>
-                        </div>
-                        <a href="#" class="btn btn-normal">Ver el carrito</a>
-                        <a href="#" class="btn btn-normal">Mi perfil</a>
-                        <a href="#" class="btn btn-normal">Cerrar sesión</a>
+                        <h1>Iniciar Sesión</h1>
+                        <form action="#" method="POST">
+                            <input type="email" name="email" placeholder="Ingresa tu email">
+                            <input type="password" name="password" placeholder="Ingresa tu contraseña">
+                            <input type="submit" class="btn btn-black" value="Entrar">
+                        </form>
+                        <a href="#" class="btn btn-normal">Registrarse</a>
                     </div>
                 </aside>
                 <!-- contenido -->
                 <section id="content">
                     <h1>Productos Destacados</h1>
-                    <div id="product-list">
+                    <div class="product-list">
                         <div class="product">
                             <img src="assets/logo.png" alt="item">
                             <div class="product-details">
@@ -134,7 +130,7 @@
                 <!-- footer -->
             </main>
             <footer>
-                <p>Omar Pizano &copy <?=date('Y')?></p>
+                <p>LOGO Company &copy <?=date('Y')?></p>
             </footer>
         </div>
     </body>
