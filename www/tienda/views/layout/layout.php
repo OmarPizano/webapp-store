@@ -18,12 +18,10 @@
             <main>
                 <aside>
                     <div id="user">
-                        <h1>{USER-TITLE}</h1>
                         {USER}
                     </div>
                 </aside>
                 <section id="content">
-                    <h1>{CONTENT-TITLE}</h1>
                     {CONTENT}
                 </section>
             </main>

@@ -1,0 +1,1 @@
+LOGO Company &COPY; <?=date('Y')?>
