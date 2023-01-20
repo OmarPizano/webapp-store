@@ -6,34 +6,29 @@
         <title>{TITLE}</title>
     </head>
     <body>
-        <!-- header -->
         <div id="site-container">
             <header>
                 <div id="logo">
-                    {LOGO}
+                    <a href="/"><img src="assets/logo.png" alt="logo"></a>
                 </div>
-                <!-- menu -->
                 <nav id="menu">
                     {MENU}
                 </nav>
             </header>
             <main>
-                <!-- barra lateral -->
                 <aside>
                     <div id="user">
                         <h1>{USER-TITLE}</h1>
                         {USER}
                     </div>
                 </aside>
-                <!-- contenido -->
                 <section id="content">
                     <h1>{CONTENT-TITLE}</h1>
                     {CONTENT}
                 </section>
-                <!-- footer -->
             </main>
             <footer>
-                <p>LOGO Company &copy <?=date('Y')?></p>
+                {FOOTER}
             </footer>
         </div>
     </body>
