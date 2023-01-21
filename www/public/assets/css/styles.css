@@ -44,6 +44,11 @@ body {
 }
 
 /* FORMS GENERALES */
+input {
+    box-sizing: border-box;
+    max-width: 600px;
+    margin: 10px auto;
+}
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -51,21 +56,20 @@ input[type="file"],
 select {
     display: block;
     border: 1px solid black;
-    margin-bottom: 5px;
     padding: 5px 0;
     width: 100%;
     text-align: center;
 }
 input[type="submit"] {
-    margin: 5px auto;
     width: 100%;
 }
-label {
-    font-size: 13px;
-}
-label[for="user_image"] {
-    display: block;
-    margin-top: 5px;
+.error-feedback {
+    color: red;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 12px;
+    text-align: end;
+    font-style: italic;
 }
 
 /* FOOTER */
@@ -221,14 +225,6 @@ aside {
 .product .btn-normal {
     width: 10%;
     margin-left: 10px;
-}
-
-/* CONTENIDO: Formulario de registro */
-.register-form {
-    display: block;
-    padding: 10px;
-    width: 50%;
-    margin: 0 auto;
 }
 
 /* CONTENIDO: Página de información (error,etc) */
