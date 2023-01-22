@@ -13,7 +13,8 @@ class Router
         self::$routes['POST'][$route] = $callback;
     }
 
-    public static function resolve(Request $request) {
+    public static function resolve() {
+        $request = new Request;
         $path = $request->getPath();
         $method = $request->getMethod();
         $callback = self::$routes[$method][$path] ?? false;
@@ -21,7 +22,7 @@ class Router
             $view = View::render('info/not_found');
             (new Response($view, 404))->send();
         } else {
-            $view = call_user_func($callback);
+            $view = call_user_func($callback, $request);
             (new Response($view, 200))->send();
         }
     }
