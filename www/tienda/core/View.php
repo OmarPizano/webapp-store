@@ -23,7 +23,7 @@ class View
     private static function getView(string $path, array $data = []) {
         extract($data);
         ob_start();
-        require_once(BASE_DIR . '/tienda/views/' . $path . '.php');
+        require_once(BASE_DIR . '/tienda/view/' . $path . '.php');
         return ob_get_clean();
     }
 }
