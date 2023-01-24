@@ -15,6 +15,24 @@ class Request
         $this->get = $this->getBody('GET');
     }
 
+    // TODO: combinar esta función con getBody()
+    /**
+     * Agrega parámetros al request actual.
+     * Se agregan a POST o GET dependiendo del Request actual.
+     */
+    public function setParams(array $params) {
+        if ($this->method === 'GET') {
+            foreach ($params as $key => $value) {
+                $this->get[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+        if ($this->method === 'POST') {
+            foreach ($params as $key => $value) {
+                $this->post[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+    }
+
     /**
      * Obtiene un parámetro de GET.
      * Si no existe, asigna uno por defecto.
