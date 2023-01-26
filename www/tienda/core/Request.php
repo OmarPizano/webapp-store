@@ -30,6 +30,13 @@ class Request
     public function query(string $key, mixed $default = null) {
         return $this->params[$key] ?? $default;
     }
+
+    /**
+     * Obtiene todos los parámetros del request en un arreglo asociativo.
+     */
+    public function dump() {
+        return $this->params;
+    }
     
     /**
      * Obtiene el método de la petición actual.
