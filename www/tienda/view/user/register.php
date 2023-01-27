@@ -1,6 +1,9 @@
 <h1>Nuevo Usuario</h1>
 <?
 use tienda\core\ui\Form;
+use tienda\core\ui\UiHelper;
+
+UiHelper::checkAlert();
 
 Form::begin(BASE_URL . '/register', 'POST');
 Form::input('text', 'name', '', 'Nombre de usuario', 'required autofocus');

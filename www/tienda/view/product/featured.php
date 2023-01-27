@@ -1,6 +1,9 @@
 <h1>Productos Destacados</h1>
 <?
 use tienda\core\ui\ProductList;
+use tienda\core\ui\UiHelper;
+
+UiHelper::checkAlert();
 
 ProductList::begin();
 ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');

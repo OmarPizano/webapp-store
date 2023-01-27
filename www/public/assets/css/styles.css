@@ -152,6 +152,25 @@ aside {
     margin-bottom: 20px;
 }
 
+/* Alertas */
+.alert {
+    width: fit-content;
+    max-width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
+    overflow-wrap: break-word;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+}
+.alert-bad {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+.alert-good {
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
 /* CONTENIDO */
 #content {
     width: 80%;
