@@ -14,12 +14,13 @@ class UserController
         View::$sidebar_model = new LoginModel;
         
         if ($request->getMethod() === 'GET') {
-            return View::render('user/register');
+            // mostrar el formulario
+            $view = View::render('user/register');
         } else {
+            // capturar y validar entrada
             View::$content_model->load($request->dump());
             if (View::$content_model->validate()) {
-                // TODO: guardar $model->save()
-                if (View::$content_model->save()) {
+                if (View::$content_model->register()) {
                     Session::alert('Usuario registrado.', true);
                     Response::redirect('/');
                 } else {
@@ -30,8 +31,8 @@ class UserController
                 Session::alert('Los datos introducidos no son válidos', false);
                 $view = View::render('user/register');
             }
-            return $view;
         }
+        return $view;
     }
 
     // TODO: public function login(Request $request) {}

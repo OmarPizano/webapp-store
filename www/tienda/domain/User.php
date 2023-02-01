@@ -24,20 +24,40 @@ class User extends ActiveRecord
     protected string $user_image;
     protected string $user_address;
 
-    public function __construct(
-        string $user_name,
-        string $user_email,
-        string $user_password,
-        string $user_role,
-        string $user_image,
-        string $user_address
-    ) {
-        $this->setID();
-        $this->user_name = $user_name;
-        $this->user_email = $user_email;
-        $this->user_password = password_hash($user_password, PASSWORD_BCRYPT);
-        $this->user_role = $user_role;
-        $this->user_image = $user_image;
-        $this->user_address = $user_address;
+    public function setUserName(string $username) {
+        $this->user_name = strtolower($username);
+    }
+    public function setEmail(string $email) {
+        $this->user_email = strtolower($email);
+    }
+    public function setPassword(string $password) {
+        $this->user_password = password_hash($password, PASSWORD_BCRYPT);
+    }
+    public function setAdminPrivs(bool $admin) {
+        $this->user_role = ($admin) ? 'admin' : 'client';
+    }
+    public function setImage(string $path) {
+        $this->user_image = $path;
+    }
+    public function setAddress(string $address) {
+        $this->user_address = $address;
+    } 
+    public function getUserName() {
+        return $this->user_name;
+    }
+    public function getEmail() {
+        return $this->user_email;
+    }
+    public function getPassword() {
+        return $this->user_password;
+    }
+    public function getAdminPrivs() {
+        return $this->user_role;
+    }
+    public function getImage() {
+        return $this->user_image;
+    }
+    public function getAddress() {
+        return $this->user_address;
     }
 }

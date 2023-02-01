@@ -44,15 +44,16 @@ class RegisterModel extends FormModel
             ]
         ];
     }
-    public function save() {
-        $new_user = new User(
-            $this->user_name,
-            $this->user_email,
-            $this->user_password,
-            'client',
-            '/logo.png',
-            $this->user_address
-        );
-        return $new_user->save();
+
+    public function register() {
+        $u = new User;
+        $u->setID();
+        $u->setUserName($this->user_name);
+        $u->setEmail($this->user_email);
+        $u->setPassword($this->user_password);
+        $u->setAdminPrivs(false);
+        $u->setImage('/logo.png');
+        $u->setAddress($this->user_address);
+        return $u->save();
     }
 }

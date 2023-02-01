@@ -10,24 +10,27 @@ abstract class ActiveRecord
 
     /** 
      * Busca un registro por ID y lo retorna como objeto.
-     * Si no lo encuentra, retorna false.
+     * Si no lo encuentra, retorna null.
+     * En caso de error, retorna false.
      */
     public static function find(string $id)
     {
         $query = static::makeQuerySelectByID($id);
         $result = static::executeQuery($query);
-        return (count($result) === 0) ? false: static::makeObject($result[0]);
+        if ($result === false) { return false; }
+        return (count($result) === 0) ? null : static::makeObject($result[0]);
     }
 
     /**
      * Retorna un array de objetos del tipo definido por la clase que hereda.
-     * Si no encuentra nada, retorna false.
+     * Si no encuentra registros, regresa un arreglo vacío.
+     * En caso de error, regresa false.
      */
     public static function all()
     {
         $query = static::makeQuerySelectAll();
         $result = static::executeQuery($query);
-        if (count($result) === 0) { return false; }
+        if ($result === false) { return false; }
         $objects = [];
         foreach ($result as $row) {
             $objects[] = static::makeObject($row);
@@ -36,7 +39,8 @@ abstract class ActiveRecord
     }
     
     /**
-     * Crea ó actualiza el registro asociado (id) al objeto.
+     * Crea un nuevo registro, o actualiza si el id ya existe.
+     * Retorna true/false.
      */
     public function save()
     {
@@ -48,14 +52,14 @@ abstract class ActiveRecord
         $result = static::executeQuery($query);
         return ($result === true) ? true: false;
     }
-    
+     
     /**
      * Elimina el registro asociado al objeto.
+     * Retorna true/false.
      */
     public function delete()
     {
         if (static::existID($this->id)) {
-            // delete
             $query = static::makeQueryDeleteByID();
             $result = static::executeQuery($query);
             return ($result === true) ? true: false;
@@ -105,15 +109,15 @@ abstract class ActiveRecord
 
     /**
      * Ejecuta una consulta SQL.
-     * Para consultas SELECT retorna un array con los resultados (puede estar
-     * vacío). Para consultas INSERT, UPDATE y DELETE retorna true o false.
-     * En todo caso, si hay algún error, también retornará false.
+     * Para SELECT retorna un array con los resultados (puede estar vacío).
+     * Para consultas INSERT, UPDATE y DELETE retorna true.
+     * En caso de error, retorna false.
      */
     private static function executeQuery(string $query)
     {
         $conn = Database::connect();
         $result = $conn->query($query);
-        if ($conn->errno != 0) { return false; }
+        if ($result === false) { return false; }
         if (! is_bool($result)) {
             $rows = $result->fetch_all(MYSQLI_ASSOC);
             $result = $rows;
@@ -123,7 +127,7 @@ abstract class ActiveRecord
     }
 
     /**
-     * Genera la cadena para una consulta SELECT con filtrado por ID.
+     * Retorna la cadena para una consulta SELECT con filtrado por ID.
      */
     private static function makeQuerySelectByID(string $id)
     {
@@ -133,7 +137,8 @@ abstract class ActiveRecord
     }
     
     /**
-     * Genera la cadena para una consulta SELECT sin filtrado.
+     * Retorna la cadena para una consulta SELECT sin filtrado.
+     * Usa los nombres de las columnas indicados por la clase hija.
      */
     private static function makeQuerySelectAll()
     {
@@ -148,8 +153,9 @@ abstract class ActiveRecord
     }
 
     /**
-     * Genera la cadena para una consulta INSERT.
-     * Los datos a insertar se obtienen del objeto instanciado.
+     * Retorna la cadena para una consulta INSERT.
+     * Los datos a insertar se obtienen de los atributos de la clase hija.
+     * Si algún atributo no está definido o es null, se pone NULL en el query.
      */
     private function makeQueryInsert()
     {
@@ -157,14 +163,10 @@ abstract class ActiveRecord
         $col_count = count(static::$table_columns);
         for ($i = 0; $i < $col_count; $i++) {
             $property = static::$table_columns[$i];
-            if ($this->$property === false) {
+            if (empty($this->{$property})) {
                 $query .= 'NULL';
             } else {
-                if (is_string($this->$property)) {
-                    $query .= '\'' . $this->$property . '\'';
-                } else {
-                    $query .= intval($this->$property);
-                }
+                $query .= (is_string($this->{$property})) ? '\'' . $this->{$property} . '\'' : $this->{$property};
             }
             $query .= ($i+1 != $col_count) ? ', ':'';
         }
@@ -173,8 +175,8 @@ abstract class ActiveRecord
     }
 
     /**
-     * Genera la cadena para una consulta UPDATE.
-     * Los datos de filtrado se obtienen del objeto instanciado.
+     * Retorna la cadena para una consulta UPDATE filtrada por id.
+     * El id se obtiene de la clase hija.
      */
     private function makeQueryUpdateByID()
     {
@@ -182,16 +184,12 @@ abstract class ActiveRecord
         $col_count = count(static::$table_columns);
         for ($i = 0; $i < $col_count; $i++) { 
             $property = static::$table_columns[$i];
-            if ($property === 'id') { continue; }
+            if ($property === static::$primary_key) { continue; }
             $query .= static::$table_columns[$i] . ' = ';
-            if ($this->$property === false) {
+            if (empty($this->{$property})) {
                 $query .= 'NULL';
             } else {
-                if (is_string($this->$property)) {
-                    $query .= '\'' . $this->$property . '\'';
-                } else {
-                    $query .= intval($this->$property);
-                }
+                $query .= (is_string($this->{$property})) ? '\'' . $this->{$property} . '\'' : $this->{$property};
             }
             $query .= ($i+1 != $col_count) ? ', ':' ';
         }
@@ -200,8 +198,8 @@ abstract class ActiveRecord
     }
     
     /**
-     * Genera la cadena para una consulta DELETE.
-     * Los datos de filtrado se obtienen del objeto instanciado.
+     * Genera la cadena para una consulta DELETE filtrada por id.
+     * Los id se obtiene de la clase hija.
      */
     private function makeQueryDeleteByID()
     {
