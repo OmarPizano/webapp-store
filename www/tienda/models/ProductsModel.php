@@ -1,9 +1,8 @@
 <?
 namespace tienda\models;
-use tienda\core\FormValidation;
 use tienda\domain\Product;
 
-class ProductsModel extends FormValidation
+class ProductsModel
 {
     public function getAllProducts() {
         return Product::all();
