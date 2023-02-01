@@ -14,19 +14,7 @@ class Form
         </form>
         ');
     }
-    public static function makeInputs(Model $model) {
-        foreach ($model->getFieldNames() as $field) {
-            self::input(
-                $model->getFieldFormType($field),
-                $field,
-                $model->{$field},
-                $model->getFieldDescription($field) ?? '',
-                $model->getFieldHtmlParams($field) ?? '',
-                $model->getFirstError($field) ?? ''
-            );
-        }
-    }
-    private static function input(
+    public static function input(
         string $type,
         string $name,
         string $value,
