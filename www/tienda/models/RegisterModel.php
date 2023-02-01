@@ -1,9 +1,9 @@
 <?
 namespace tienda\models;
-use tienda\core\Model;
+use tienda\core\FormModel;
 use tienda\domain\User;
 
-class RegisterModel extends Model
+class RegisterModel extends FormModel
 {
     public string $user_name = '';
     public string $user_email = '';
@@ -50,7 +50,7 @@ class RegisterModel extends Model
             $this->user_email,
             $this->user_password,
             'client',
-            ASSET_URL . '/logo.png',
+            '/logo.png',
             $this->user_address
         );
         return $new_user->save();
