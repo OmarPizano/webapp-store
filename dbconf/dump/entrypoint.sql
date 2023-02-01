@@ -67,7 +67,7 @@ CREATE TABLE products (
     product_price       FLOAT(10,2) UNSIGNED NOT NULL,
     product_stock       INT UNSIGNED NOT NULL,
     product_discount    TINYINT UNSIGNED NOT NULL,
-    pruduct_image       VARCHAR(255),
+    product_image       VARCHAR(255),
     CONSTRAINT pk_products PRIMARY KEY (id),
     CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES categories (id),
     CONSTRAINT uq_product_name UNIQUE (product_name)
