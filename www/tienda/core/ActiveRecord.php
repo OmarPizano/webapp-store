@@ -92,12 +92,12 @@ abstract class ActiveRecord
      * Crea un objeto a partir de un registro (array asociativo).
      * El tipo es determinado a partir de la clase que hereda.
      */
-    private function makeObject(array $row)
+    private static function makeObject(array $row)
     {
         $object = new static;
         foreach ($row as $key => $value) {
             if (property_exists($object, $key)) {
-                $object->$key = $value;
+                $object->$key = (is_null($value)) ? '' : $value;
             }
         }
         return $object;
@@ -109,7 +109,7 @@ abstract class ActiveRecord
      * vacío). Para consultas INSERT, UPDATE y DELETE retorna true o false.
      * En todo caso, si hay algún error, también retornará false.
      */
-    private function executeQuery(string $query)
+    private static function executeQuery(string $query)
     {
         $conn = Database::connect();
         $result = $conn->query($query);
@@ -125,7 +125,7 @@ abstract class ActiveRecord
     /**
      * Genera la cadena para una consulta SELECT con filtrado por ID.
      */
-    private function makeQuerySelectByID(string $id)
+    private static function makeQuerySelectByID(string $id)
     {
         $query = static::makeQuerySelectAll();
         $query .= ' WHERE ' . static::$primary_key . ' = \'' . $id . '\'';
@@ -135,7 +135,7 @@ abstract class ActiveRecord
     /**
      * Genera la cadena para una consulta SELECT sin filtrado.
      */
-    private function makeQuerySelectAll()
+    private static function makeQuerySelectAll()
     {
         $query = 'SELECT ';
         $col_count = count(static::$table_columns);
@@ -157,10 +157,14 @@ abstract class ActiveRecord
         $col_count = count(static::$table_columns);
         for ($i = 0; $i < $col_count; $i++) {
             $property = static::$table_columns[$i];
-            if (is_string($this->$property)) {
-                $query .= '\'' . $this->$property . '\'';
+            if ($this->$property === false) {
+                $query .= 'NULL';
             } else {
-                $query .= intval($this->$property);
+                if (is_string($this->$property)) {
+                    $query .= '\'' . $this->$property . '\'';
+                } else {
+                    $query .= intval($this->$property);
+                }
             }
             $query .= ($i+1 != $col_count) ? ', ':'';
         }
@@ -180,10 +184,14 @@ abstract class ActiveRecord
             $property = static::$table_columns[$i];
             if ($property === 'id') { continue; }
             $query .= static::$table_columns[$i] . ' = ';
-            if (is_string($this->$property)) {
-                // $query .= '\'' . $this->$property . '\'';
+            if ($this->$property === false) {
+                $query .= 'NULL';
             } else {
-                $query .= intval($this->$property);
+                if (is_string($this->$property)) {
+                    $query .= '\'' . $this->$property . '\'';
+                } else {
+                    $query .= intval($this->$property);
+                }
             }
             $query .= ($i+1 != $col_count) ? ', ':' ';
         }

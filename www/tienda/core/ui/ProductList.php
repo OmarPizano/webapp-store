@@ -40,6 +40,6 @@ class ProductList
                     </div>
                 </div>
             </div>
-        ', $img_path, $price_current, $price_discount, $price_original, $href_buy, $href_buy, $description);
+        ', $img_path, $price_current, $price_discount, $price_original, $href_buy, $href_add, $description);
     }
 }

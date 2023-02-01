@@ -2,14 +2,22 @@
 <?
 use tienda\core\ui\ProductList;
 use tienda\core\ui\UiHelper;
+use tienda\core\View;
 
 UiHelper::checkAlert();
 
+$products = View::$content_model->getAllProducts();
+
 ProductList::begin();
-ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');
-ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');
-ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');
-ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');
-ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');
-ProductList::item(ASSET_URL . '/logo.png', '$1000.00', '-50%', '$2000.00', '#', '#', 'Producto N Marca N');
+foreach ($products as $p) {
+    ProductList::item(
+        ASSET_URL . $p->getImage(),
+        $p->getCurrentPrice(),
+        $p->getDiscount(),
+        $p->getPrice(),
+        '/user/buy/' . $p->getID(),
+        '/user/add/' . $p->getID(),
+        $p->getName());
+    
+}
 ProductList::end();
