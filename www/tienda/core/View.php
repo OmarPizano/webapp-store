@@ -3,14 +3,17 @@ namespace tienda\core;
 
 class View
 {
-    public static function render(string $view, Model $model) {
+    public static Model $content_model;
+    public static Model $sidebar_model;
+
+    public static function render(string $view) {
         // cargar layout y sus componentes
         $layout = self::getView('layout/layout');
         $menu = self::getView('layout/menu');
         $sidebar = self::getView('layout/sidebar');
         $footer = self::getView('layout/footer');
         // cargar el contenido
-        $content = self::getView($view, $model);
+        $content = self::getView($view);
         // integrar el contenido del layout
         $layout = str_replace("{TITLE}", APP_TITLE, $layout);
         $layout = str_replace("{MENU}", $menu, $layout);
@@ -20,7 +23,7 @@ class View
         return $layout;
     }
 
-    private static function getView(string $path, Model $model = null) {
+    private static function getView(string $path) {
         ob_start();
         require_once(BASE_DIR . '/tienda/view/' . $path . '.php');
         return ob_get_clean();
