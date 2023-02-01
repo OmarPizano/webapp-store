@@ -2,7 +2,7 @@ CREATE DATABASE store;
 USE store;
 
 CREATE TABLE users (
-    id              INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
+    id              VARCHAR(6) NOT NULL,
     user_name       VARCHAR(20) NOT NULL,
     user_email      VARCHAR(255) NOT NULL,
     user_password   VARCHAR(60) NOT NULL,
@@ -17,27 +17,29 @@ CREATE TABLE users (
 -- Usuario por defecto de administrador.
 -- password: admin12345
 INSERT INTO users VALUES (
-    NULL,
+    '111111',
     'admin',
     'admin@email.com',
     '$2y$10$LRBt5eUcESD8ZWuUC3O9E.FoZ9hMcmOl56r2MaUupWoNIsitYEl4S',
     'admin',
+    NULL,
     NULL
 );
 
 -- password: comprador
 INSERT INTO users VALUES (
-    NULL,
+    'aaaaaa',
     'comprador',
     'comprador@email.com',
     '$2a$12$gTFOHxlkEqRU2D56heiiBePTcfAjXbL61aJESmUhiWEUphYB2z..i',
     'client',
+    NULL,
     NULL
 );
 
 -- CREATE TABLE addresses (
 --     id              INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
---     user_id         INT(4) UNSIGNED ZEROFILL NOT NULL,
+--     user_id         VARCHAR(6) NOT NULL,
 --     address_state   VARCHAR(20) NOT NULL,
 --     address_city    VARCHAR(20) NOT NULL,
 --     address_street  VARCHAR(30) NOT NULL,
@@ -77,7 +79,7 @@ INSERT INTO products VALUES(NULL, 0003, 'Sudadera Pull&Bear Negra CH', NULL, 200
 
 CREATE TABLE orders (
     id              INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
-    user_id         INT(4) UNSIGNED ZEROFILL NOT NULL,
+    user_id         VARCHAR(6) NOT NULL,
     order_status    VARCHAR(8) NOT NULL,
     order_date      DATETIME NOT NULL,
     order_total     FLOAT(10,2) UNSIGNED NOT NULL,
@@ -85,7 +87,7 @@ CREATE TABLE orders (
     CONSTRAINT fk_order_user FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-INSERT INTO orders VALUES(NULL, 0002, 'pending', '2023-01-02 13:23:33', 7017.00);
+INSERT INTO orders VALUES(NULL, 'aaaaaa', 'pending', '2023-01-02 13:23:33', 7017.00);
 
 CREATE TABLE order_items (
     id          INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT NOT NULL,
