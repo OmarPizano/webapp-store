@@ -19,4 +19,13 @@ abstract class Database {
             return $conn;
         }
     }
+
+    public static function checkRecord(string $table, string $column, string $value) {
+        $conn = self::connect();
+        $stm = $conn->prepare("SELECT * FROM {$table} WHERE {$column} = ?");
+        $stm->bind_param('s', $value);
+        if (!$stm->execute()) { return false; }
+        $row = $stm->get_result()->fetch_assoc();
+        return (is_countable($row)) ? true : false;
+    }
 }

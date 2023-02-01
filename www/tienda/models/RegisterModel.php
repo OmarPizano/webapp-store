@@ -1,9 +1,9 @@
 <?
 namespace tienda\models;
-use tienda\core\FormModel;
+use tienda\core\FormValidation;
 use tienda\domain\User;
 
-class RegisterModel extends FormModel
+class RegisterModel extends FormValidation
 {
     public string $user_name = '';
     public string $user_email = '';
@@ -11,10 +11,12 @@ class RegisterModel extends FormModel
     public string $user_password = '';
     public string $user_password2 = '';
 
+    private User $domain;
+
+    protected string $entity_name = 'users';
+
     public function __construct()
     {
-        parent::__construct(); 
-        $this->entity_name = 'users';
         $this->field_config = [
             'user_name' => [
                 'rules' => [['required'], ['unique'], ['length', 3, 20]],

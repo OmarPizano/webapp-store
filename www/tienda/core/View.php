@@ -3,8 +3,8 @@ namespace tienda\core;
 
 class View
 {
-    public static Model $content_model;
-    public static Model $sidebar_model;
+    public static $content_model;
+    public static $sidebar_model;
 
     public static function render(string $view) {
         // cargar layout y sus componentes
