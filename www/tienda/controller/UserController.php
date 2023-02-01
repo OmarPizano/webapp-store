@@ -1,6 +1,7 @@
 <?
 namespace tienda\controller;
 use tienda\core\Request;
+use tienda\core\Response;
 use tienda\core\Session;
 use tienda\core\View;
 use tienda\models\LoginModel;
@@ -18,8 +19,13 @@ class UserController
             View::$content_model->load($request->dump());
             if (View::$content_model->validate()) {
                 // TODO: guardar $model->save()
-                Session::alert('Datos validados', true);
-                $view = View::render('user/register');
+                if (View::$content_model->save()) {
+                    Session::alert('Usuario registrado.', true);
+                    Response::redirect('/');
+                } else {
+                    Session::alert('Hubo un problema al registar el usuario.', false);
+                    $view = View::render('user/register');
+                }
             } else {
                 Session::alert('Los datos introducidos no son válidos', false);
                 $view = View::render('user/register');

@@ -29,12 +29,7 @@ abstract class Model
         }
         return true;
     }
-    
-    public function save()
-    {
-        // TODO: guardar en la db
-    }
-    
+ 
     public function validate()
     {
         // TODO: refactorizar (simplificar con funciones)

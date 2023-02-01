@@ -1,6 +1,7 @@
 <?
 namespace tienda\models;
 use tienda\core\Model;
+use tienda\domain\User;
 
 class RegisterModel extends Model
 {
@@ -42,5 +43,16 @@ class RegisterModel extends Model
                 'form_type' => 'password',
             ]
         ];
-    }    
+    }
+    public function save() {
+        $new_user = new User(
+            $this->user_name,
+            $this->user_email,
+            $this->user_password,
+            'client',
+            ASSET_URL . '/logo.png',
+            $this->user_address
+        );
+        return $new_user->save();
+    }
 }
