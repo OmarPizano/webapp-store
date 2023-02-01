@@ -6,6 +6,7 @@ abstract class FormValidation
     private array $errors = [];
     protected string $entity_name = '';
     protected array $field_config = [];
+    protected bool $model_status = false;
 
     private const ERROR_MSGS = [
         'required' => "Este campo es requerido.",
@@ -17,11 +18,23 @@ abstract class FormValidation
     ];
 
     /**
+     * Retorna el estado de validación actual del modelo.
+     * Retorna true/false
+     */
+    public function loadModel (array $request_data) {
+        if ($this->verify($request_data) and $this->validate()) {
+            $this->model_status = true;
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Carga los atributos del request en el modelo.
      * Aborta si alguno de los atributos no encaja.
      * Retorna true/false.
      */
-    public function load(array $request_data)
+    private function verify(array $request_data)
     {
         foreach ($request_data as $key => $value) {
             if (!property_exists($this, $key)) { return false; }
@@ -35,7 +48,7 @@ abstract class FormValidation
      * Las reglas están definidas en el modelo que hereda.
      * Si hubo algún error, retorna false.
      */
-    public function validate()
+    private function validate()
     {
         foreach ($this->field_config as $field => $config) {
             $rules = $config['rules'];
@@ -96,7 +109,7 @@ abstract class FormValidation
         } else {
             $new_rule = self::ERROR_MSGS[$rule_type];
             for ($i = 1; $i <= count($params); $i++) {
-                $new_rule = str_replace('{' . $i . '}', $params[$i], $new_rule);
+                $new_rule = str_replace('{' . $i . '}', $params[$i-1], $new_rule);
             }
             $this->errors[$field][] = $new_rule;
         }

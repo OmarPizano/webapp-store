@@ -24,7 +24,14 @@ class User extends ActiveRecord
     protected string $user_image;
     protected string $user_address;
 
-    public function setUserName(string $username) {
+    public function __construct() {
+        // Valores por defecto (RegisterModel)
+        $this->setID();
+        $this->setrole(false);
+        $this->setImage('/logo.png');
+    }
+
+    public function setName(string $username) {
         $this->user_name = strtolower($username);
     }
     public function setEmail(string $email) {
@@ -33,7 +40,7 @@ class User extends ActiveRecord
     public function setPassword(string $password) {
         $this->user_password = password_hash($password, PASSWORD_BCRYPT);
     }
-    public function setAdminPrivs(bool $admin) {
+    public function setRole(bool $admin) {
         $this->user_role = ($admin) ? 'admin' : 'client';
     }
     public function setImage(string $path) {
@@ -42,7 +49,7 @@ class User extends ActiveRecord
     public function setAddress(string $address) {
         $this->user_address = $address;
     } 
-    public function getUserName() {
+    public function getName() {
         return $this->user_name;
     }
     public function getEmail() {
@@ -51,7 +58,7 @@ class User extends ActiveRecord
     public function getPassword() {
         return $this->user_password;
     }
-    public function getAdminPrivs() {
+    public function getRole() {
         return $this->user_role;
     }
     public function getImage() {

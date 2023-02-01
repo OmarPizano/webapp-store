@@ -17,7 +17,24 @@ class RegisterModel extends FormValidation
 
     public function __construct()
     {
-        $this->field_config = [
+        $this->field_config = $this->getRules();
+        $this->model_status = false;
+    }
+
+    public function register() {
+        if ($this->model_status) {
+            $this->domain = new User;
+            $this->domain->setName($this->user_name);
+            $this->domain->setEmail($this->user_email);
+            $this->domain->setAddress($this->user_address);
+            $this->domain->setPassword($this->user_password);
+            return $this->domain->save();
+        }
+        return false;
+    }
+
+    private function getRules () {
+        $rules = [
             'user_name' => [
                 'rules' => [['required'], ['unique'], ['length', 3, 20]],
                 'description' => 'Nombre de usuario',
@@ -45,17 +62,6 @@ class RegisterModel extends FormValidation
                 'form_type' => 'password',
             ]
         ];
-    }
-
-    public function register() {
-        $u = new User;
-        $u->setID();
-        $u->setUserName($this->user_name);
-        $u->setEmail($this->user_email);
-        $u->setPassword($this->user_password);
-        $u->setAdminPrivs(false);
-        $u->setImage('/logo.png');
-        $u->setAddress($this->user_address);
-        return $u->save();
+        return $rules;
     }
 }
