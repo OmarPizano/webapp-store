@@ -3,7 +3,7 @@ namespace tienda\core;
 
 class View
 {
-    public static function render(string $view, Model $model = null) {
+    public static function render(string $view, Model $model) {
         // cargar layout y sus componentes
         $layout = self::getView('layout/layout');
         $menu = self::getView('layout/menu');

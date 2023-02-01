@@ -8,13 +8,13 @@ use tienda\models\RegisterModel;
 class UserController
 {
     public function register(Request $request) {
+        $model = new RegisterModel;
         if ($request->getMethod() === 'GET') {
-            return View::render('user/register');
+            return View::render('user/register', $model);
         } else {
-            $model = new RegisterModel;
             $model->load($request->dump());
             if ($model->validate()) {
-                // TODO: guardar
+                // TODO: guardar $model->save()
                 Session::alert('Datos validados', true);
                 $view = View::render('user/register', $model);
             } else {
