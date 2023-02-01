@@ -1,5 +1,6 @@
 <?
 namespace tienda\core;
+use tienda\models\LoginModel;
 
 class Router
 {
@@ -16,7 +17,9 @@ class Router
     public static function resolve(Request $request) {
         $callback = self::getCallback($request);
         if ($callback === false) {
-            $view = View::render('info/not_found');
+            // TODO: considerar casos para cuando el sidebar cambia
+            // $view = View::render('info/not_found');
+            $view = 'Resource not found.';
             (new Response($view, 404))->send();
         } else {
             $view = call_user_func($callback, $request);
