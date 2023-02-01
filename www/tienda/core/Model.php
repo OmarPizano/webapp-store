@@ -4,7 +4,7 @@ namespace tienda\core;
 abstract class Model
 {
     private $conn;
-    private array $errors;
+    private array $errors = [];
     protected string $entity_name; // nombre de la tabla en la db
     protected array $field_config; // reglas de validación, html params
 
