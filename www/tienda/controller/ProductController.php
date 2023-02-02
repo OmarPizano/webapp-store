@@ -1,6 +1,5 @@
 <?
 namespace tienda\controller;
-use tienda\core\Controller;
 use tienda\models\ProductsModel;
 
 class ProductController
