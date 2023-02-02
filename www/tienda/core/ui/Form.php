@@ -26,9 +26,9 @@ class Form
             <div class="error-feedback">%s</div>
         ', $type, $name, $value, $placeholder, $html_params, $error_msg);
     }
-    public static function submit(string $text) {
+    public static function submit(string $text, string $name) {
         echo sprintf('
-            <input type="submit" class="btn btn-black" value="%s">
-        ', $text);
+            <input type="submit" class="btn btn-black" value="%s" name="%s">
+        ', $text, $name);
     }
 }
