@@ -1,11 +1,9 @@
 <?
 namespace tienda\core;
-use tienda\models\LoginModel;
+use tienda\models\UserModel;
 
 abstract class Model
 {
-    public LoginModel $login_model;
-
     public $domain;
 
     private array $errors = [];
@@ -20,10 +18,6 @@ abstract class Model
         'password_verify' => "Las contraseñas no coinciden.",
         'unknown' => 'La validación no se reconce.'
     ];
-
-    public function __construct() {
-        $this->login_model = new LoginModel;
-    }
 
     public function loadModel(Request $request) {
         return ($this->load($request) and $this->validate());

@@ -5,17 +5,17 @@ use tienda\core\ui\Form;
 
 Form::begin(BASE_URL, 'POST');
 
-$m = $model->login_model;
-
-foreach ($m->getFieldNames() as $field) {
+foreach ($model->getFieldNames() as $field) {
+    if ($field === 'user_name' or $field === 'user_password') {
         Form::input(
-            $m->getFieldFormType($field),
+            $model->getFieldFormType($field),
             $field,
-            $m->{$field},
-            $m->getFieldDescription($field) ?? '',
-            $m->getFieldHtmlParams($field) ?? '',
-            $m->getFirstError($field) ?? ''
+            $model->domain->{$field},
+            $model->getFieldDescription($field) ?? '',
+            $model->getFieldHtmlParams($field) ?? '',
+            $model->getFirstError($field) ?? ''
         );
+    }
 }
 Form::submit('Entrar');
 Form::end();

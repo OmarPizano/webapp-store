@@ -6,7 +6,6 @@ use tienda\domain\User;
 class UserModel extends Model
 {
     public function __construct() {
-        parent::__construct();
         $this->domain = new User;
         $this->field_config = $this->getRules();
         $this->entity_name = 'users';
