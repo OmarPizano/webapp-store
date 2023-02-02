@@ -16,6 +16,15 @@ class UserModel extends Model
         return $this->domain->save();
     }
 
+    public function login() {
+        $users = User::all();
+        foreach ($users as $u) {
+            if (strcmp($this->domain->user_name, $u->user_name) === 0) {
+                return password_verify($this->domain->user_password, $u->user_password);
+            }
+        }
+    }
+
     private function getRules () {
         return [
             'user_name' => [

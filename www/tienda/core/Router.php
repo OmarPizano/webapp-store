@@ -1,5 +1,6 @@
 <?
 namespace tienda\core;
+use tienda\models\ViewModel;
 
 class Router
 {
@@ -38,10 +39,11 @@ class Router
             (new Response($view, 404))->send();
         } else {
             // MVC triad
-            $model = new $callback['model'][0]; // instanciar modelo
+            $content_model = new $callback['model'][0]; // instanciar modelo
+            $viewmodel = new ViewModel($content_model);
             $controller = new $callback['controller'][0]; // instanciar controlador
             // $model = controller->func($model, $request), actualizar el modelo con el request
-            $model = call_user_func([$controller, $callback['controller'][1]], $model, $request);
+            $model = call_user_func([$controller, $callback['controller'][1]], $viewmodel, $request);
             $view = new View($model); // instanciar y renderizar la vista 
             $rederedView = $view->render($callback['view']);
             (new Response($rederedView, 200))->send();

@@ -5,7 +5,7 @@ use tienda\core\ui\UiHelper;
 
 UiHelper::checkAlert();
 
-$products = $model->getAll();
+$products = $model->content_model->getAll();
 
 ProductList::begin();
 foreach ($products as $p) {

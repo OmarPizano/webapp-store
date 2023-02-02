@@ -1,10 +1,10 @@
 <?
 namespace tienda\controller;
-use tienda\models\ProductsModel;
+use tienda\models\ViewModel;
 
 class ProductController
 {
-    public static function getFeatured(ProductsModel $model) {
+    public static function getFeatured(ViewModel $model) {
         return $model;
     }
 }

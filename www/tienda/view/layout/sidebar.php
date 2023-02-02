@@ -5,18 +5,20 @@ use tienda\core\ui\Form;
 
 Form::begin(BASE_URL . '/login', 'POST');
 
-foreach ($user->getFieldNames() as $field) {
+$sidebar = $model->sidebar_model;
+
+foreach ($sidebar->getFieldNames() as $field) {
     if ($field === 'user_name' or $field === 'user_password') {
         Form::input(
-            $user->getFieldFormType($field),
+            $sidebar->getFieldFormType($field),
             $field,
-            $user->domain->{$field},
-            $user->getFieldDescription($field) ?? '',
-            $user->getFieldHtmlParams($field) ?? '',
-            $user->getFirstError($field) ?? ''
+            $sidebar->domain->{$field},
+            $sidebar->getFieldDescription($field) ?? '',
+            $sidebar->getFieldHtmlParams($field) ?? '',
+            $sidebar->getFirstError($field) ?? ''
         );
     }
 }
-Form::submit('Entrar');
+Form::submit('Entrar', 'login_submit');
 Form::end();
 Button::normal(BASE_URL . '/register', 'Registrarse');

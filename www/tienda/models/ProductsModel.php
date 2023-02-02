@@ -1,9 +1,8 @@
 <?
 namespace tienda\models;
-use tienda\core\Model;
 use tienda\domain\Product;
 
-class ProductsModel extends Model
+class ProductsModel
 {
     public function getAll() {
         return Product::all();

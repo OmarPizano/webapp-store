@@ -28,6 +28,12 @@ Router::post('/register',
     [UserModel::class],
     'user/register'
 );
+Router::post(
+    '/login',
+    [UserController::class, 'submitLoginForm'],
+    [UserModel::class],
+    'user/register'
+);
 
 $request = new Request;
 

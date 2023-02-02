@@ -5,16 +5,18 @@ use tienda\core\ui\UiHelper;
 
 UiHelper::checkAlert();
 
+$content = $model->content_model;
+
 Form::begin(BASE_URL . '/register', 'POST');
-foreach ($model->getFieldNames() as $field) {
+foreach ($content->getFieldNames() as $field) {
     Form::input(
-        $model->getFieldFormType($field),
+        $content->getFieldFormType($field),
         $field,
-        $model->domain->{$field},
-        $model->getFieldDescription($field) ?? '',
-        $model->getFieldHtmlParams($field) ?? '',
-        $model->getFirstError($field) ?? ''
+        $content->domain->{$field},
+        $content->getFieldDescription($field) ?? '',
+        $content->getFieldHtmlParams($field) ?? '',
+        $content->getFirstError($field) ?? ''
     );
 }
-Form::submit('Enviar');
+Form::submit('Enviar', 'register_submit');
 Form::end();

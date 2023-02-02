@@ -25,7 +25,12 @@ abstract class Model
 
     private function load(Request $request): bool {
         foreach ($request->dump() as $key => $value) {
-            if (!property_exists($this->domain, $key)) { return false; }
+            if (! $request->query('login_submit', false)) {
+                if (!property_exists($this->domain, $key)) { return false; }
+            } else {
+                unset($this->field_config['user_email']);
+                unset($this->field_config['user_address']);
+            }
             $this->domain->{$key} = $value;
         }
         return true;
