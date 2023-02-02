@@ -1,12 +1,15 @@
 <?
 namespace tienda\core;
+use tienda\models\UserModel;
 
 class View
 {
-    private Model $model;
+    public Model $model;
+    public UserModel $user_model;
 
     public function __construct(Model $model) {
         $this->model = $model;
+        $this->user_model = new UserModel;
     }
 
     public function render(string $view) : string {
@@ -28,7 +31,7 @@ class View
 
     private function getView(string $path) : string {
         ob_start();
-        extract(['model' => $this->model]);
+        extract(['model' => $this->model, 'user' => $this->user_model]);
         require_once(BASE_DIR . '/tienda/view/' . $path . '.php');
         return ob_get_clean();
     }

@@ -3,20 +3,20 @@
 use tienda\core\ui\Button;
 use tienda\core\ui\Form;
 
-Form::begin(BASE_URL, 'POST');
+Form::begin(BASE_URL . '/login', 'POST');
 
-foreach ($model->getFieldNames() as $field) {
+foreach ($user->getFieldNames() as $field) {
     if ($field === 'user_name' or $field === 'user_password') {
         Form::input(
-            $model->getFieldFormType($field),
+            $user->getFieldFormType($field),
             $field,
-            $model->domain->{$field},
-            $model->getFieldDescription($field) ?? '',
-            $model->getFieldHtmlParams($field) ?? '',
-            $model->getFirstError($field) ?? ''
+            $user->domain->{$field},
+            $user->getFieldDescription($field) ?? '',
+            $user->getFieldHtmlParams($field) ?? '',
+            $user->getFirstError($field) ?? ''
         );
     }
 }
 Form::submit('Entrar');
 Form::end();
-Button::normal(BASE_URL, 'Registrarse');
+Button::normal(BASE_URL . '/register', 'Registrarse');
