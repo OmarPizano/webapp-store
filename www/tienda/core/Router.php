@@ -1,17 +1,32 @@
 <?
 namespace tienda\core;
-use tienda\models\LoginModel;
 
 class Router
 {
     public static array $routes = [];
 
-    public static function get(string $route, callable $callback) {
-        self::$routes['GET'][$route] = $callback;
+    public static function get(
+        string $route,
+        array $controller,
+        array $model,
+        string $view) {
+        self::$routes['GET'][$route] = [
+            'controller' => $controller,
+            'model' => $model,
+            'view' => $view
+        ];
     }
 
-    public static function post(string $route, callable $callback) {
-        self::$routes['POST'][$route] = $callback;
+    public static function post(
+        string $route,
+        array $controller,
+        array $model,
+        string $view) {
+        self::$routes['POST'][$route] = [
+            'controller' => $controller,
+            'model' => $model,
+            'view' => $view
+        ];
     }
 
     public static function resolve(Request $request) {
@@ -22,12 +37,18 @@ class Router
             $view = 'Resource not found.';
             (new Response($view, 404))->send();
         } else {
-            $view = call_user_func($callback, $request);
-            (new Response($view, 200))->send();
+            // MVC triad
+            $model = new $callback['model'][0]; // instanciar modelo
+            $controller = new $callback['controller'][0]; // instanciar controlador
+            // $model = controller->func($model, $request), actualizar el modelo con el request
+            $model = call_user_func([$controller, $callback['controller'][1]], $model, $request);
+            $view = new View($model); // instanciar y renderizar la vista 
+            $rederedView = $view->render($callback['view']);
+            (new Response($rederedView, 200))->send();
         }
     }
 
-    private static function getCallback(Request $request) {
+    private static function getCallback(Request $request) : array | bool {
         // buscar ruta simple
         $callback = self::$routes[$request->getMethod()][$request->getPath()] ?? false;
         if ($callback != false) {

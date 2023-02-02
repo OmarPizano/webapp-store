@@ -1,15 +1,11 @@
 <?
 namespace tienda\controller;
-use tienda\core\View;
-use tienda\models\LoginModel;
+use tienda\core\Controller;
 use tienda\models\ProductsModel;
 
 class ProductController
 {
-    public function featured() {
-        View::$sidebar_model = new LoginModel;
-        View::$content_model = new ProductsModel;
-        $view = View::render('product/featured');
-        return $view;
+    public static function getFeatured(ProductsModel $model) {
+        return $model;
     }
 }

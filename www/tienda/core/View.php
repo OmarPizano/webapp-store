@@ -3,10 +3,13 @@ namespace tienda\core;
 
 class View
 {
-    public static $content_model;
-    public static $sidebar_model;
+    private Model $model;
 
-    public static function render(string $view) {
+    public function __construct(Model $model) {
+        $this->model = $model;
+    }
+
+    public function render(string $view) : string {
         // cargar layout y sus componentes
         $layout = self::getView('layout/layout');
         $menu = self::getView('layout/menu');
@@ -23,8 +26,9 @@ class View
         return $layout;
     }
 
-    private static function getView(string $path) {
+    private function getView(string $path) : string {
         ob_start();
+        extract(['model' => $this->model]);
         require_once(BASE_DIR . '/tienda/view/' . $path . '.php');
         return ob_get_clean();
     }

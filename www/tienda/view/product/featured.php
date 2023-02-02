@@ -2,11 +2,10 @@
 <?
 use tienda\core\ui\ProductList;
 use tienda\core\ui\UiHelper;
-use tienda\core\View;
 
 UiHelper::checkAlert();
 
-$products = View::$content_model->getAllProducts();
+$products = $model->getAll();
 
 ProductList::begin();
 foreach ($products as $p) {
@@ -18,6 +17,5 @@ foreach ($products as $p) {
         '/user/buy/' . $p->getID(),
         '/user/add/' . $p->getID(),
         $p->getName());
-    
 }
 ProductList::end();
