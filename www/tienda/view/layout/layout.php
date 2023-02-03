@@ -17,8 +17,8 @@
             </header>
             <main>
                 <aside>
-                    <div id="user">
-                        {USER}
+                    <div id="sidebar">
+                        {SIDEBAR}
                     </div>
                 </aside>
                 <section id="content">

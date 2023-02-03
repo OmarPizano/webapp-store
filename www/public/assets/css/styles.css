@@ -141,10 +141,10 @@ aside {
     background-color: lightgray;
     box-shadow: 1px 1px 7px black;
 }
-#user {
+#sidebar {
     padding: 10px;
 }
-#user h1 {
+#sidebar h1 {
     font-size: 20px;
     text-align: center;
     padding-bottom: 10px;
