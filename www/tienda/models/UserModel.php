@@ -23,11 +23,7 @@ class UserModel
         $users = User::all();
         foreach ($users as $u) {
             if (strcmp($this->user_name, $u->user_name) === 0) {
-                if (password_verify($this->user_password, $u->user_password)) {
-                    return $u->id;
-                } else {
-                    return false;
-                }
+                return password_verify($this->user_password, $u->user_password) ? $u->id: false;
             }
         }
         return false;
