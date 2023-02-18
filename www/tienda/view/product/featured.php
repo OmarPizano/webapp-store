@@ -6,7 +6,7 @@ use tienda\core\ui\UiHelper;
 UiHelper::checkAlert();
 
 ProductList::begin();
-foreach ($model->getAll() as $product) {
+foreach ($model->getProductList() as $product) {
     ProductList::item(
         ASSET_URL . $product->getImage(),
         $product->getCurrentPrice(),
