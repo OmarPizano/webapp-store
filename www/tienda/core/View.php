@@ -1,5 +1,6 @@
 <?
 namespace tienda\core;
+use tienda\models\CategoriesModel;
 use tienda\models\UserModel;
 
 class View
@@ -16,7 +17,7 @@ class View
 
     public function render() {
         $this->template->setTitle($this->view_title);
-        $this->template->loadMenu();
+        $this->template->loadMenu(new CategoriesModel);
         $this->template->loadUser(new UserModel);
         $this->template->loadContent($this->model);
         $this->template->loadFooter();

@@ -16,8 +16,8 @@ class Template
         $this->layout = str_replace("{TITLE}", $title, $this->layout);
     }
 
-    public function loadMenu() {
-        $menu = $this->loadTemplate('layout/menu');
+    public function loadMenu($model) {
+        $menu = $this->loadTemplate('layout/menu', $model);
         $this->layout = str_replace("{MENU}", $menu, $this->layout);
     }
 
