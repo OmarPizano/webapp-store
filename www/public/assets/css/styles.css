@@ -133,23 +133,57 @@ main {
     display: flex;
 }
 
-/* BARRA LATERAL */
-aside {
+#user {
+    display: flex;
     width: 20%;
-    padding: 10px;
-    margin: 10px;
-    background-color: lightgray;
-    box-shadow: 1px 1px 7px black;
+    justify-content: space-evenly;
 }
-#sidebar {
-    padding: 10px;
+
+#user-img {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+    overflow: hidden;
 }
-#sidebar h1 {
-    font-size: 20px;
+
+#user-img img {
+    width: 30px;
+    height: 30px;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    outline: 2px solid black;
+}
+
+#user-img p {
+    font-size: 14px;
+}
+
+#user-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90px;
+    width: 50%;
+    height: 100%;
+    font-size: 13px;
+}
+
+#user-actions a {
     text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid gray;
-    margin-bottom: 20px;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    margin: 4px 20px;
+    border: 1px solid black;
+}
+#user-actions a:hover {
+    color: white;
+    background-color: black;
 }
 
 /* Alertas */
@@ -173,7 +207,7 @@ aside {
 
 /* CONTENIDO */
 #content {
-    width: 80%;
+    width: 100%;
     padding: 20px;
     margin: 10px;
 }
@@ -189,7 +223,7 @@ aside {
 .product-list {
     min-height: 500px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 }
 .product {
     background-color: lightgray;
@@ -198,6 +232,7 @@ aside {
     font-size: 12px;
     box-shadow: 1px 1px 7px black;
     /* height: fit-content; */
+    max-height: 300px;
 }
 .product-details {
     padding: 10px;
