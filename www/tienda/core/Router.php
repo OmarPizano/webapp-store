@@ -16,10 +16,8 @@ class Router
     public static function resolve(Request $request) {
         $callback = self::getCallback($request);
         if ($callback === false) {
-            // TODO: considerar casos para cuando el sidebar cambia
-            // $view = View::render('info/not_found');
-            $view = 'Resource not found.';
-            (new Response($view, 404))->send();
+            $view = new View([], 'info/not_found', 'Error 404');
+            (new Response($view->render(), 404))->send();
         } else {
             // ejecutar la acción del controlador (regresa vista)
             $view = call_user_func([$callback[0], $callback[1]], $request);
