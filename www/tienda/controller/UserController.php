@@ -19,6 +19,7 @@ class UserController
             if ($id) {
                 Session::alert('Sesion iniciada correctamente.', true);
                 Session::set('user_id', $id);
+                Session::set('admin', $model->isAdmin($id));
                 Response::redirect('/');
             } else {
                 Session::alert('Credenciales inválidas.', false);

@@ -33,6 +33,10 @@ class UserModel
         return User::find($id);
     }
 
+    public function isAdmin(string $id) {
+        return (User::find($id)->user_role == 'admin') ? true: false;
+    }
+
     public function signup() {
         $user = new User();
         $user->user_name = $this->user_name;

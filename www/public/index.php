@@ -18,6 +18,8 @@ Router::get('/login', [UserController::class, 'login']);
 Router::get('/logout', [UserController::class, 'logout']);
 Router::get('/signup', [UserController::class, 'signup']);
 Router::post('/signup', [UserController::class, 'signup']);
+Router::get('/product/admin', [ProductListController::class, 'crudProducts']);
+Router::post('/product/admin', [ProductListController::class, 'crudProducts']);
 
 $request = new Request;
 

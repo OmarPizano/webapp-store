@@ -49,8 +49,14 @@ class Product extends ActiveRecord
     public function getID() {
         return strval($this->id);
     }
+    public function getCategoryID() {
+        return strval($this->category_id);
+    }
     public function getName() {
         return $this->product_name;
+    }
+    public function getstock() {
+        return strval($this->product_stock);
     }
     public function getCurrentPrice() {
         $price = $this->product_price;
