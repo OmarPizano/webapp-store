@@ -1,4 +1,4 @@
-<h1>Nuevo Usuario</h1>
+<h1>Iniciar Sesión</h1>
 <?
 use tienda\core\ui\Form;
 use tienda\core\ui\UiHelper;
