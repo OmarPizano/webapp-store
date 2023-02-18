@@ -1,56 +1,57 @@
 <?
 namespace tienda\controller;
 use tienda\core\Request;
+use tienda\core\Response;
 use tienda\core\Session;
 use tienda\core\View;
-use tienda\models\ProductListModel;
 use tienda\models\UserModel;
 
 class UserController
 {
-    public static function login(Request $request, $viewmodel) {
+    public static function login(Request $request) {
         $model = new UserModel();
-        $model->load($request->dump());
-        $id = $model->login();
-        if (! $id) {
-            Session::alert('Credenciales inválidas.', false);
-            $viewmodel->template = 'product/featured';
-            $viewmodel->title = 'Productos Destacados';
-            $viewmodel->content = new ProductListModel;
-        } else {
-            Session::alert('Sesion iniciada.', true);
-            Session::set('user_id', $id);
-            // TODO: enviar al perfil de usuario en lugar de featured
-            $viewmodel->template = 'product/featured';
-            $viewmodel->title = 'Productos Destacados';
-            $viewmodel->content = new ProductListModel;
-        }
-        $viewmodel->sidebar = $model;
-        return $viewmodel;
-    }
-
-    public static function logout (Request $request, $viewmodel) {
-        Session::alert('Sesión cerrada.', true);
-        Session::unset('user_id');
-        // TODO: mandar a la misma ruta actual
-        $viewmodel->template = 'product/featured';
-        $viewmodel->title = 'Productos Destacados';
-        $viewmodel->content = new ProductListModel;
-        $viewmodel->sidebar = new UserModel;
-        return $viewmodel;
-    }
-
-    public static function register(Request $request, $viewmodel) {
         if ($request->getMethod() === 'GET') {
-            $viewmodel->template = 'user/register';
-            $viewmodel->title = 'Registro de usuario';
-            $viewmodel->content = new ProductListModel;
-            $viewmodel->sidebar = new UserModel;
-            return $viewmodel;
+            $view = new View($model, 'user/login', 'Iniciar sesión');
+            return $view->render(); 
         } elseif ($request->getMethod() === 'POST') {
-            # code...
-        } else {
-            echo "Metodo no manejado";
+            $model->load($request->dump());
+            $id = $model->login();
+            if ($id) {
+                Session::alert('Sesion iniciada correctamente.', true);
+                Session::set('user_id', $id);
+                Response::redirect('/');
+            } else {
+                Session::alert('Credenciales inválidas.', false);
+                $view = new View($model, 'user/login', 'Iniciar sesión');
+                return $view->render(); 
+            }
+        }
+    }
+
+    public static function logout (Request $request) {
+        if (Session::get('user_id')) {
+            Session::alert('Sesión cerrada.', true);
+            Session::unset('user_id');
+            // Session::stop();  // TODO: implementar
+        }
+        Response::redirect('/');
+    }
+
+    public static function signup(Request $request) {
+        $model = new UserModel();
+        if ($request->getMethod() === 'GET') {
+            $view = new View($model, 'user/signup', 'Registro de Usuario');
+            return $view->render();
+        } elseif ($request->getMethod() === 'POST') {
+            $model->load($request->dump());
+            if ($model->signup()) {
+                Session::alert('Usuario registrado correctamente.', true);
+                Response::redirect('/');
+            } else {
+                Session::alert('Fallo al registrar el usuario. Intente de nuevo.', false);
+                $view = new View($model, 'user/signup', 'Registro de Usuario');
+                return $view->render();
+            }
         }
     }
 }

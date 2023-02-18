@@ -14,9 +14,10 @@ Session::start();
 
 Router::get('/', [ProductListController::class, 'getFeatured']);
 Router::post('/login', [UserController::class, 'login']);
+Router::get('/login', [UserController::class, 'login']);
 Router::get('/logout', [UserController::class, 'logout']);
-Router::get('/register', [UserController::class, 'register']);
-Router::post('/register', [UserController::class, 'register']);
+Router::get('/signup', [UserController::class, 'signup']);
+Router::post('/signup', [UserController::class, 'signup']);
 
 $request = new Request;
 
