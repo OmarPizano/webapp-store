@@ -9,7 +9,6 @@ class ProductListController
 {
     public static function getFeatured(Request $request) {
         $model = new ProductListModel();
-        $view = new View($model, 'product/featured', 'Productos Destacados');
-        return $view->render();
+        return new View($model, 'product/featured', 'Productos Destacados');
     }
 }

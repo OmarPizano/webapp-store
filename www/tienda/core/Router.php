@@ -24,7 +24,7 @@ class Router
             // ejecutar la acción del controlador (regresa vista)
             $view = call_user_func([$callback[0], $callback[1]], $request);
             // enviar el response con la vista renderizada
-            (new Response($view, 200))->send();
+            (new Response($view->render(), 200))->send();
         }
     }
 

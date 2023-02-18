@@ -10,10 +10,7 @@ class UserController
 {
     public static function login(Request $request) {
         $model = new UserModel();
-        if ($request->getMethod() === 'GET') {
-            $view = new View($model, 'user/login', 'Iniciar sesión');
-            return $view->render(); 
-        } elseif ($request->getMethod() === 'POST') {
+        if ($request->getMethod() === 'POST') {
             $model->load($request->dump());
             $id = $model->login();
             if ($id) {
@@ -22,10 +19,9 @@ class UserController
                 Response::redirect('/');
             } else {
                 Session::alert('Credenciales inválidas.', false);
-                $view = new View($model, 'user/login', 'Iniciar sesión');
-                return $view->render(); 
             }
         }
+        return new View($model, 'user/login', 'Iniciar sesión');
     }
 
     public static function logout (Request $request) {
@@ -39,19 +35,15 @@ class UserController
 
     public static function signup(Request $request) {
         $model = new UserModel();
-        if ($request->getMethod() === 'GET') {
-            $view = new View($model, 'user/signup', 'Registro de Usuario');
-            return $view->render();
-        } elseif ($request->getMethod() === 'POST') {
+        if ($request->getMethod() === 'POST') {
             $model->load($request->dump());
             if ($model->signup()) {
                 Session::alert('Usuario registrado correctamente.', true);
                 Response::redirect('/');
             } else {
                 Session::alert('Fallo al registrar el usuario. Intente de nuevo.', false);
-                $view = new View($model, 'user/signup', 'Registro de Usuario');
-                return $view->render();
             }
         }
+        return new View($model, 'user/signup', 'Registro de Usuario');
     }
 }
