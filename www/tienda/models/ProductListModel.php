@@ -2,11 +2,12 @@
 namespace tienda\models;
 use tienda\domain\Product;
 
-class ProductsModel
+class ProductListModel
 {
+    /**
+     * Carga todos los productos en el modelo.
+     */
     public function getAll() {
         return Product::all();
     }
-
-    // TODO: getFeaturedProducts()
 }

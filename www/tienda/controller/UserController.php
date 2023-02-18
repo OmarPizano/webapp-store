@@ -1,41 +1,43 @@
 <?
 namespace tienda\controller;
 use tienda\core\Request;
-use tienda\core\Response;
 use tienda\core\Session;
-use tienda\models\ViewModel;
+use tienda\core\View;
+use tienda\models\UserModel;
 
 class UserController
 {
-    public static function showRegisterForm(ViewModel $model) {
-        return $model;
+    public static function login(Request $request) {
+        $user = $request->query('user_name');
+        $password = $request->query('user_password');
+        $model = new UserModel();
+        $id = $model->login($user, $password);
+        if (! $model->login($user, $password)) {
+            Session::alert('Credenciales inválidas.', false);
+            header('Location: /');
+        } else {
+            Session::alert('Sesion iniciada.', true);
+            Session::set('user_id', $id);
+            // TODO: mandar a la misma ruta actual
+            header('Location: /');
+        }
     }
 
-    public static function submitRegisterForm(ViewModel $model, Request $request) {
-        if ($model->content_model->loadModel($request)) {
-            if ($model->content_model->register()) {
-                Session::alert('Usuario registrado', true);
-                Response::redirect('/');
-            } else {
-                Session::alert('No se pudo completar la operación. Inténtalo de nuevo', false);
-            }
-        } else {
-            Session::alert('La información ingresada es incorrecta.', false);
-        }
-        return $model;
+    public static function logout (Request $request) {
+        Session::alert('Sesión cerrada.', true);
+        Session::unset('user_id');
+        // TODO: mandar a la misma ruta actual
+        header('Location: /');
     }
 
-    public static function submitLoginForm(ViewModel $model, Request $request) {
-        if ($model->sidebar_model->loadModel($request)) {
-            if ($model->sidebar_model->login()) {
-                Session::alert('Login exitoso', true);
-                Response::redirect('/');
-            } else {
-                Session::alert('Credenciales inválidas', false);
-            }
+    public static function register(Request $request) {
+        if ($request->getMethod() === 'GET') {
+            $view = new View(['sidebar' => 'Sidebar_register', 'content' => 'Form_register'], 'user/register', 'Registrar');
+            echo $view->render();
+        } elseif ($request->getMethod() === 'POST') {
+            # code...
         } else {
-            Session::alert('La información ingresada es incorrecta.', false);
+            echo "Metodo no manejado";
         }
-        return $model;
     }
 }

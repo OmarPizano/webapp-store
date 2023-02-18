@@ -5,17 +5,15 @@ use tienda\core\ui\UiHelper;
 
 UiHelper::checkAlert();
 
-$products = $model->content_model->getAll();
-
 ProductList::begin();
-foreach ($products as $p) {
+foreach ($data as $product) {
     ProductList::item(
-        ASSET_URL . $p->getImage(),
-        $p->getCurrentPrice(),
-        $p->getDiscount(),
-        $p->getPrice(),
-        '/user/buy/' . $p->getID(),
-        '/user/add/' . $p->getID(),
-        $p->getName());
+        ASSET_URL . $product->getImage(),
+        $product->getCurrentPrice(),
+        $product->getDiscount(),
+        $product->getPrice(),
+        '/user/buy/' . $product->getID(),
+        '/user/add/' . $product->getID(),
+        $product->getName());
 }
 ProductList::end();

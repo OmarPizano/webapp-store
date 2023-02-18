@@ -5,18 +5,11 @@ use tienda\core\ui\UiHelper;
 
 UiHelper::checkAlert();
 
-$content = $model->content_model;
-
 Form::begin(BASE_URL . '/register', 'POST');
-foreach ($content->getFieldNames() as $field) {
-    Form::input(
-        $content->getFieldFormType($field),
-        $field,
-        $content->domain->{$field},
-        $content->getFieldDescription($field) ?? '',
-        $content->getFieldHtmlParams($field) ?? '',
-        $content->getFirstError($field) ?? ''
-    );
-}
+Form::input('text', 'user_name', $data, 'Ingresa tu usuario', 'required', '');
+Form::input('email', 'user_email', '', 'Ingresa tu email', 'required', '');
+Form::input('text', 'user_address', '', 'Ingresa tu dirección', 'required', '');
+Form::input('password', 'user_password', '', 'Ingresa tu contraseña', 'required', '');
+Form::input('password', 'user_password2', '', 'Repite la contraseǹa', 'required', '');
 Form::submit('Enviar', 'register_submit');
 Form::end();

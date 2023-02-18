@@ -1,33 +1,16 @@
 <?
 namespace tienda\core;
-use tienda\models\ViewModel;
 
 class Router
 {
     public static array $routes = [];
 
-    public static function get(
-        string $route,
-        array $controller,
-        array $model,
-        string $view) {
-        self::$routes['GET'][$route] = [
-            'controller' => $controller,
-            'model' => $model,
-            'view' => $view
-        ];
+    public static function get(string $route, array $controller) {
+        self::$routes['GET'][$route] = $controller;
     }
 
-    public static function post(
-        string $route,
-        array $controller,
-        array $model,
-        string $view) {
-        self::$routes['POST'][$route] = [
-            'controller' => $controller,
-            'model' => $model,
-            'view' => $view
-        ];
+    public static function post(string $route, array $controller) {
+        self::$routes['POST'][$route] = $controller;
     }
 
     public static function resolve(Request $request) {
@@ -38,15 +21,10 @@ class Router
             $view = 'Resource not found.';
             (new Response($view, 404))->send();
         } else {
-            // MVC triad
-            $content_model = new $callback['model'][0]; // instanciar modelo
-            $viewmodel = new ViewModel($content_model);
-            $controller = new $callback['controller'][0]; // instanciar controlador
-            // $model = controller->func($model, $request), actualizar el modelo con el request
-            $model = call_user_func([$controller, $callback['controller'][1]], $viewmodel, $request);
-            $view = new View($model); // instanciar y renderizar la vista 
-            $rederedView = $view->render($callback['view']);
-            (new Response($rederedView, 200))->send();
+            // ejecutar la acción del controlador (regresa vista)
+            $view = call_user_func([$callback[0], $callback[1]], $request);
+            // enviar el response con la vista renderizada
+            (new Response($view, 200))->send();
         }
     }
 
