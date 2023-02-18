@@ -16,7 +16,7 @@ class View
     public function render() {
         $this->template->setTitle($this->view_title);
         $this->template->loadMenu();
-        $this->template->loadSidebar($this->view_data['sidebar'] ?? 'Nada');
+        $this->template->loadSidebar($this->view_data['sidebar']);
         $this->template->loadContent($this->view_data['content']);
         $this->template->loadFooter();
         return $this->template->getView();
