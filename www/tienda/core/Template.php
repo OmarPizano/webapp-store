@@ -20,15 +20,15 @@ class Template
         $menu = $this->loadTemplate('layout/menu');
         $this->layout = str_replace("{MENU}", $menu, $this->layout);
     }
-    
-    public function loadSidebar($model) {
-        $menu = $this->loadTemplate('layout/sidebar', $model);
-        $this->layout = str_replace("{SIDEBAR}", $menu, $this->layout);
-    } 
 
     public function loadFooter() {
         $footer = $this->loadTemplate('layout/footer');
         $this->layout = str_replace("{FOOTER}", $footer, $this->layout);
+    }
+
+    public function loadUser($model) {
+        $content = $this->loadTemplate('layout/user', $model);
+        $this->layout = str_replace("{USER}", $content, $this->layout);
     }
 
     public function loadContent($model) {

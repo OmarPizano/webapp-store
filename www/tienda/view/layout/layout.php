@@ -15,14 +15,7 @@
                     {MENU}
                 </nav>
                 <div id="user">
-                    <div id="user-actions">
-                        <a href="#">Carrito</a>
-                        <a href="#">Salir</a>
-                    </div>
-                    <div id="user-img">
-                        <a href="#"><img src="<?=ASSET_URL?>/logo.png" alt="profile"></a>
-                        <p>Username</p>
-                    </div>
+                    {USER}
                 </div>
             </header>
             <main>

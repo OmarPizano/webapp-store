@@ -137,6 +137,8 @@ main {
     display: flex;
     width: 20%;
     justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
 }
 
 #user-img {
@@ -184,6 +186,26 @@ main {
 #user-actions a:hover {
     color: white;
     background-color: black;
+}
+
+.btn-login, .btn-signup {
+    display: block;
+    padding: 7px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+.btn-login {
+    border: 1px solid black;
+    color: black;
+}
+
+.btn-signup {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
 }
 
 /* Alertas */
