@@ -9,6 +9,9 @@ use tienda\models\UserModel;
 class UserController
 {
     public static function login(Request $request) {
+        if (Session::get('user_id')) {
+            Response::redirect('/');
+        }
         $model = new UserModel();
         if ($request->getMethod() === 'POST') {
             $model->load($request->dump());
@@ -34,6 +37,9 @@ class UserController
     }
 
     public static function signup(Request $request) {
+        if (Session::get('user_id')) {
+            Response::redirect('/');
+        }
         $model = new UserModel();
         if ($request->getMethod() === 'POST') {
             $model->load($request->dump());
