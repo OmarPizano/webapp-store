@@ -20,6 +20,8 @@ Router::get('/signup', [UserController::class, 'signup']);
 Router::post('/signup', [UserController::class, 'signup']);
 Router::get('/product/admin', [ProductListController::class, 'crudProducts']);
 Router::post('/product/admin', [ProductListController::class, 'crudProducts']);
+Router::get('/product/edit/{id}', [ProductListController::class, 'editProduct']);
+Router::post('/product/edit/{id}', [ProductListController::class, 'editProduct']);
 
 $request = new Request;
 

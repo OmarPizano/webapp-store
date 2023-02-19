@@ -255,7 +255,7 @@ main {
 .product {
     background-color: lightgray;
     width: 200px;
-    margin: 10px;
+    margin: 10px 15px;
     font-size: 12px;
     box-shadow: 1px 1px 7px black;
     /* height: fit-content; */
@@ -429,4 +429,42 @@ td {
 }
 #crud_items img {
     height: 100px;
+}
+
+
+/* PRODUCT EDIT FORM */
+.product-edit-form {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+}
+
+.photo_box {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    background-color: red;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+.photo_box_img {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.photo_box_button {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+
+.data_box {
+    grid-column: 3/4;
+    grid-row: 1/3;
+    background-color: green;
+    display: grid;
+}
+.submit_box {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    background-color: yellow;
 }

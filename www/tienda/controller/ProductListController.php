@@ -28,4 +28,22 @@ class ProductListController
             Response::redirect('/');
         }
     }
+
+    public static function editProduct(Request $request) {
+        if (Session::get('user_id') and Session::get('admin')) {
+            $model = new ProductListModel();
+            if ($request->getMethod() === 'POST') {
+                // Guardar los cambios
+            } else {
+                // Cargar el producto en el modelo
+                $model->loadProduct($request->query('id'));
+            }
+            return new View($model, 'product/edit', 'Editar un Producto');
+        } else {
+            Session::alert('Permiso denegado al recurso.', false);
+            Response::redirect('/');
+        }
+
+    }
+
 }

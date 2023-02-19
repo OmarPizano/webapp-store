@@ -17,14 +17,14 @@ class Product extends ActiveRecord
         'product_image'
     ];
 
-    protected string $id;
-    protected string $category_id;
-    protected string $product_name;
-    protected string $product_description;
-    protected float $product_price;
-    protected int $product_stock;
-    protected float $product_discount;
-    protected string $product_image;
+    public string $id;
+    public string $category_id;
+    public string $product_name;
+    public string $product_description;
+    public float $product_price;
+    public int $product_stock;
+    public float $product_discount;
+    public string $product_image;
 
     public function __construct(
         string $id = '',
