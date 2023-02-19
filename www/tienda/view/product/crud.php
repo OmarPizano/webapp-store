@@ -1,18 +1,19 @@
 <h1>Administración de Productos</h1>
 
-<div id="crud_buttons">
-    <a href="/product/new">Nuevo</a>
-    <a href="/product/export">Exportar Todo</a>
-    <a href="/product/delete">Borrar Todo</a>
-</div>
-<div id="crud_search">
-    <?
-    use tienda\core\ui\Form;
-    Form::begin('/product/admin', 'POST', $model);
-    Form::input('search', 'search', 'Buscar', 'required autofocus');
-    Form::submit('Buscar', 'search_submit');
-    Form::end();
-    ?>
+<div id="crud_ops">
+    <div id="crud_buttons">
+        <a href="/product/new">Nuevo</a>
+        <a href="/product/export">Exportar</a>
+        <a href="/product/delete">Borrar</a>
+    </div>
+    <div id="crud_search">
+        <form action="/product/admin", method="POST">
+            <div class="input_wrapper">
+                <input type="text" name="search" placeholder="Buscar" required autofocus/>
+            </div>
+            <input type="submit" value="Buscar" name="search_submit">
+        </form>
+    </div>
 </div>
 <div id="crud_items">
     <?
