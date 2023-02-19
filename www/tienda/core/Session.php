@@ -8,6 +8,11 @@ class Session
             session_start();
         }
     }
+    public static function stop() {
+        if (isset($_SESSION)) {
+            session_destroy();
+        }
+    }
     public static function end() {
         session_destroy();
     }
