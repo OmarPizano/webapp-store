@@ -3,8 +3,8 @@
 <div id="crud_ops">
     <div id="crud_buttons">
         <a href="/product/new">Nuevo</a>
-        <a href="/product/export">Exportar</a>
-        <a href="/product/delete">Borrar</a>
+        <a href="/product/export_all">Exportar</a>
+        <a class="delete" href="/product/delete_all">Borrar</a>
     </div>
     <div id="crud_search">
         <form action="/product/admin", method="POST">
@@ -38,8 +38,8 @@
             <td><?= $p->getPrice() ?></td>
             <td><?= $p->getDiscount() ?></td>
             <td>
-                Modificar
-                Borrar
+                <a href="/product/edit/<?= $p->getID() ?>">Editar</a>
+                <a class='delete' href="/product/delete/<?= $p->getID() ?>">Eliminar</a>
             </td>
         </tr>
         <? endforeach; ?>
