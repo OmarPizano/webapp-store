@@ -196,7 +196,7 @@ main {
     max-width: 80%;
     padding: 10px;
     margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
     overflow-wrap: break-word;
     border-radius: 10px;
@@ -521,4 +521,20 @@ td {
 .submit_box a:hover {
     background-color: #ff0033;
     color: white;
+}
+
+
+/* FORMS GENERICOS */
+
+input {
+    display: block;
+    text-align: center;
+    justify-items: center;
+    margin: 10px auto;
+    width: 500px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 250px;
 }
