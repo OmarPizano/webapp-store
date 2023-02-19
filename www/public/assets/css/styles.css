@@ -425,3 +425,6 @@ td {
     background-color: #ff0033;
     color: white
 }
+#crud_items img {
+    height: 100px;
+}

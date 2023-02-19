@@ -31,7 +31,10 @@
         </tr>
         <? foreach ($products as $p): ?>
         <tr>
-            <td><?= $p->getImage() ?></td>
+               
+            <td>
+                <img src="<?=ASSET_URL . $p->getImage() ?>" alt="product">
+            </td>
             <td><?= $p->getName() ?></td>
             <td><?= $p->getCategoryID() ?></td>
             <td><?= $p->getStock() ?></td>
