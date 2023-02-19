@@ -31,7 +31,9 @@ class UserController
     public static function logout (Request $request) {
         if (Session::get('user_id')) {
             Session::alert('Sesión cerrada.', true);
-            Session::stop();
+            Session::unset('user_id');
+            Session::unset('admin');
+            // Session::stop();
         }
         Response::redirect('/');
     }
