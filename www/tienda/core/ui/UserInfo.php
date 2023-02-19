@@ -4,7 +4,7 @@ namespace tienda\core\ui;
 
 class UserInfo
 {
-    public static function actionsCart(
+    public static function userActions(
         string $cart_href,
         string $cart_text,
         string $exit_href,
