@@ -6,7 +6,7 @@
         <title>{TITLE}</title>
     </head>
     <body>
-        <div id="site-container">
+        <div class="site-container">
             <header>
                 <div id="logo">
                     <a href="/"><img src="<?=ASSET_URL?>/logo.png" alt="logo"></a>
