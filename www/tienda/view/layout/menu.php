@@ -10,6 +10,6 @@ $top = $model->getTop();
         <? foreach ($top as $category) : ?>
             <li><a class="btn normal" href="/category/<?= $category->id ?>"><?= $category->category_name ?></a></li>
         <? endforeach ?>
-        <li><a class="btn normal" href="/about">Acerca De</a></li>
     <? endif ?>
+    <li><a class="btn normal" href="/about">Acerca De</a></li>
 </ul>
