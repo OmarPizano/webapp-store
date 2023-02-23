@@ -239,22 +239,16 @@ main h1 {
     grid-template-columns: 4fr 1fr;
     gap: 10px;
 }
-.product-btns .btn {
-    display: grid;
-}
 
 /* CONTENIDO: Página de información (error,etc) */
 .info-page {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
 }
 .info-page img {
     width: 150px;
     height: 150px;
-    margin: 20px;
-}
-.info-page p {
-    margin: 20px;
 }
 
 
