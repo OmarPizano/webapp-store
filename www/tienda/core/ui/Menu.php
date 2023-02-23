@@ -15,7 +15,7 @@ class Menu
     }
     public static function item(string $href, string $text) {
         echo sprintf('
-            <li><a href="%s">%s</a></li>
+            <li><a class="btn normal" href="%s">%s</a></li>
         ', $href, $text);
     }
 }

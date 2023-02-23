@@ -8,13 +8,13 @@
     <body>
         <div class="site-container">
             <header>
-                <div id="logo">
+                <div class="logo">
                     <a href="/"><img src="<?=ASSET_URL?>/logo.png" alt="logo"></a>
                 </div>
-                <nav id="menu">
+                <nav>
                     {MENU}
                 </nav>
-                <div id="user">
+                <div class="user">
                     {USER}
                 </div>
             </header>
