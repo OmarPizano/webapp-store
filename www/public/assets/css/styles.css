@@ -195,23 +195,23 @@ nav a, nav a:visited {
 }
 
 /* CONTENIDO: LOGIN y SIGNUP*/
-.login-form {
+.login-form, .signup-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-.login-form div {
+.login-form div, .signup-form div {
     display: flex;
     flex-direction: column;
     width: 400px;
     gap: 5px;
     text-align: center;
 }
-.login-form input {
+.login-form input, .signup-form input {
     height: 25px;
     text-align: center;
 }
-.login-form .btn {
+.login-form .btn, .signup-form .btn {
     width: 100px;
     height: 30px;
     align-self: center;

@@ -1,15 +1,23 @@
-<h1>Nuevo Usuario</h1>
-<?
-use tienda\core\ui\Form;
-use tienda\core\ui\UiHelper;
-
-UiHelper::checkAlert();
-
-Form::begin(BASE_URL . '/signup', 'POST', $model);
-Form::input('text', 'user_name', 'Ingresa tu usuario', 'required autofocus');
-Form::input('email', 'user_email', 'Ingresa tu email', 'required');
-Form::input('text', 'user_address', 'Ingresa tu dirección', 'required');
-Form::input('password', 'user_password', 'Ingresa tu contraseña', 'required');
-Form::input('password', 'user_password2', 'Repite la contraseǹa', 'required');
-Form::submit('Enviar', 'signup_submit');
-Form::end();
+<form class="signup-form" action="/signup" method="POST">
+    <div>
+        <label for="username">Usuario</label>
+        <input type="text" name="user_name" id="username" value="<?= $model->user_name ?>" required autofocus>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name="user_email" id="email" value="<?= $model->user_email ?>" required>
+    </div>
+    <div>
+        <label for="address">Address</label>
+        <input type="text" name="user_address" id="address" value="<?= $model->user_address ?>" required>
+    </div>
+    <div>
+        <label for="password">Contraseña</label>
+        <input type="password" name="user_password" id="password" required>
+    </div>
+    <div>
+        <label for="password2">Verificar contraseña</label>
+        <input type="password" name="user_password2" id="password2" required>
+    </div>
+    <input class="btn black" type="submit" name="submit" value="Registrar">
+</form>
