@@ -19,9 +19,7 @@
                 </div>
             </header>
             <main>
-                <section id="content">
-                    {CONTENT}
-                </section>
+                {CONTENT}
             </main>
             <footer>
                 {FOOTER}
