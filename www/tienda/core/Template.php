@@ -12,6 +12,7 @@ class Template
     }
 
     public function setTitle(string $title) {
+        $this->layout = str_replace("{VIEW_TITLE}", $title, $this->layout);
         $title = (empty($title)) ? APP_TITLE : APP_TITLE . ' | ' . $title;
         $this->layout = str_replace("{TITLE}", $title, $this->layout);
     }

@@ -19,7 +19,15 @@
                 </div>
             </header>
             <main>
-                {CONTENT}
+                <div class="page-title">
+                    <h1>{VIEW_TITLE}</h1>
+                </div>
+                <div class="page-alert">
+                    <? tienda\core\ui\UiHelper::checkAlert() ?>
+                </div>
+                <div class="page-content">
+                    {CONTENT}
+                </div>
             </main>
             <footer>
                 {FOOTER}

@@ -17,6 +17,33 @@ body {
     display: grid;
     grid-template-rows: 80px 1fr 80px;
 }
+
+/* BOTONEs */
+.btn, .btn:visited {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    font-size: 13px;
+    border: 1px solid black;
+}
+.normal, .black:hover {
+    color: black;
+    background-color: transparent;
+}
+.black, .normal:hover {
+    color: white;
+    background-color: black;
+}
+.red {
+    color: white;
+    background-color: #663333;
+}
+.red:hover {
+    color: white;
+    background-color: #ff0033;
+}
+
 header {
     background-color: lightgray;
     /* border-bottom: 4px solid black; */
@@ -28,11 +55,9 @@ main {
     grid-row: 2/3;
     background-color: #ffffff;
     display: grid;
-    grid-template-rows: 60px 1fr;
-    justify-items: center;
-    gap: 20px;
-    min-height: 500px;
+    grid-template-rows: 50px 50px 1fr;
     padding: 20px;
+    gap: 20px;
 }
 footer {
     background-color: lightgrey;
@@ -74,30 +99,6 @@ nav li {
     display: grid;
     align-items: center;
 }
-.btn, .btn:visited {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-decoration: none;
-    font-size: 13px;
-    border: 1px solid black;
-}
-.normal, .black:hover {
-    color: black;
-    background-color: transparent;
-}
-.black, .normal:hover {
-    color: white;
-    background-color: black;
-}
-.red {
-    color: white;
-    background-color: #663333;
-}
-.red:hover {
-    color: white;
-    background-color: #ff0033;
-}
 nav a, nav a:visited {
     width: 100px;
     height: 50%;
@@ -131,7 +132,6 @@ nav a, nav a:visited {
     background-image: none;
     background-color: darkgray;
 }
-
 .user-profile img {
     width: 45px;
     height: 45px;
@@ -141,35 +141,43 @@ nav a, nav a:visited {
     border-bottom-left-radius: 50% 50%;
     outline: 1px solid black;
 }
-
 .user-profile p {
     font-size: 13px;
     font-weight: bolder;
 }
-
-.error-feedback {
+/* .error-feedback {
     color: red;
     max-width: 600px;
     margin: 0 auto;
     font-size: 12px;
     text-align: end;
     font-style: italic;
-}
-main h1 {
+} */
+.page-title {
     display: grid;
-    align-items: center;
     justify-items: center;
-    font-size: 25px;
-    background-image: linear-gradient(to top, lightgray, white);
-    width: 60%;
+    /* background-color: lightcoral; */
 }
-main .alert {
-    width: fit-content;
-    max-width: 80%;
-    align-self: center;
-    justify-content: center;
-    padding: 10px;
+.page-title h1 {
+    display: grid;
+    font-size: 30px;
     text-align: center;
+    align-items: center;
+    width: 60%;
+    background-image: linear-gradient(to top, lightgray, white);
+}
+.page-alert {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    /* background-color: lightcoral; */
+}
+.alert {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    max-width: 80%;
+    height: 40px;
     overflow-wrap: break-word;
     border-radius: 10px;
     box-shadow: 1px 1px 5px black;
@@ -180,6 +188,35 @@ main .alert {
 .alert-good {
     background-color: rgba(0, 255, 0, 0.4);
 }
+.page-content {
+    /* background-color: lightpink; */
+    display: flex;
+    justify-content: space-around;
+}
+
+/* CONTENIDO: LOGIN y SIGNUP*/
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.login-form div {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 5px;
+    text-align: center;
+}
+.login-form input {
+    height: 25px;
+    text-align: center;
+}
+.login-form .btn {
+    width: 100px;
+    height: 30px;
+    align-self: center;
+}
+
 /* CONTENIDO: Lista de productos */
 .product-list {
     display: grid;

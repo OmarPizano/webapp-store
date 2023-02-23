@@ -1,12 +1,11 @@
-<h1>Iniciar Sesión</h1>
-<?
-use tienda\core\ui\Form;
-use tienda\core\ui\UiHelper;
-
-UiHelper::checkAlert();
-
-Form::begin(BASE_URL . '/login', 'POST', $model);
-Form::input('text', 'user_name', 'Ingresa tu usuario', 'required autofocus');
-Form::input('password', 'user_password', 'Ingresa tu contraseña', 'required');
-Form::submit('Acceder', 'login_submit');
-Form::end();
+<form class="login-form" action="/login" method="POST">
+    <div>
+        <label for="username">Usuario</label>
+        <input type="text" name="user_name" id="username" value="<?= $model->user_name ?>" required autofocus>
+    </div>
+    <div>
+        <label for="username">Contraseña</label>
+        <input type="password" name="user_password" id="username" required>
+    </div>
+    <input class="btn black" type="submit" name="submit" value="Entrar">
+</form>
