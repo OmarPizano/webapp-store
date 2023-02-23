@@ -26,6 +26,7 @@ body {
     text-decoration: none;
     font-size: 13px;
     border: 1px solid black;
+    box-sizing: border-box;
 }
 .normal, .black:hover {
     color: black;
@@ -301,33 +302,23 @@ nav a, nav a:visited {
     width: 100%;
 }
 .crud-ops {
-    display: grid;
-    grid-template-columns: 1fr 0.5fr 1fr;
-}
-.crud-btns {
-    grid-column: 1/2;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
-.crud-btns .btn {
+.crud-ops .btn {
     width: 100px;
-    height: 50%;
+    height: 30px;
 }
-.crud-search {
-    grid-column: 3/4;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    justify-items: end;
+.crud-ops input[type=text] {
+    width: 400px;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
 }
-.crud-search input[type=text] {
-    width: 300px;
-    height: 50%;
-}
-.crud-search .btn {
-    width: 100px;
-    height: 50%;
+.crud-ops form {
+    display: flex;
 }
 
 /* TABLE */

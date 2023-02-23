@@ -14,6 +14,15 @@ class ProductListModel
     public $product_image = '';
 
     private $product_list = [];
+    
+    public $crud_names = [
+        'product_image' => 'Imagen',
+        'product_name' => 'Nombre',
+        'category_id' => 'Categoría',
+        'product_stock' => 'Stock',
+        'product_price' => 'Precio',
+        'product_discount' => 'Descuento',
+    ];
 
     public $search = '';
 
