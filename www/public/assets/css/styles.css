@@ -358,86 +358,46 @@ table img {
 .product-edit-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 5fr 0.7fr;
-    gap: 10px;
-    width: 100%;
+    grid-template-rows: 80% 20%;
+    gap: 20px;
+    width: 70%;
 }
-
 .photo_box {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    display: grid;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
+    gap: 10px;
     border: 1px solid black;
 }
-
 .photo_box img {
-    margin: 30px;
     height: 250px;
     width: 250px;
 }
-
-.photo_box_button {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-}
-
 .data_box {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    display: grid;
-    grid-template-rows: 2fr 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     background-color: lightgray;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid black;
 }
-.data_box input,
-.data_box textarea,
-.data_box select {
-    width: 100%;
-    margin-bottom: 15px;
-    height: 25px;
-    text-align: center;
-}
 .data_box textarea {
-    height: 80px;
+    height: 100px;
 }
-
-.text_data {
-    grid-column: 1/4;
-    grid-row: 1/2;
-    display: grid;
-    align-content: start;
-    padding: 15px;
-}
-
-.numeric_data {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-content: start;
-    padding: 15px;
-}
-
-.numeric_data .data {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
+.data_box input, select {
+    text-align: center;
 }
 
 .submit_box {
     grid-column: 1/3;
-    grid-row: 2/3;
     padding: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-    align-items: center;
-    justify-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
 }
-
 .submit_box .btn {
     width: 200px;
     height: 30px;

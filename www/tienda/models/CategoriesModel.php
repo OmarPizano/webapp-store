@@ -15,5 +15,8 @@ class CategoriesModel
         // TODO: obtener las 2 categorías con mas pedidos
         return array_slice($this->categories_list, 0, 3);
     }
-
+    public function getAll() {
+        // TODO: obtener las 2 categorías con mas pedidos
+        return $this->categories_list;
+    }
 }
