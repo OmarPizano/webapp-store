@@ -1,21 +1,19 @@
 <h1>Administración de Productos</h1>
 
-<div id="crud_ops">
-    <div id="crud_buttons">
-        <a href="/product/new">Nuevo</a>
-        <a href="/product/export_all">Exportar</a>
-        <a class="delete" href="/product/delete_all">Borrar</a>
-    </div>
-    <div id="crud_search">
-        <form action="/product/admin", method="POST">
-            <div class="input_wrapper">
+<div class="crud">
+    <div class="crud-ops">
+        <div class="crud-btns">
+            <a class="btn black" href="/product/new">Nuevo</a>
+            <a class="btn black" href="/product/export_all">Exportar</a>
+            <a class="btn red" href="/product/delete_all">Borrar Todo</a>
+        </div>
+        <div class="crud-search">
+            <input class="btn black" type="submit" value="Buscar" name="search_submit" form="search_form">
+            <form action="/product/admin", method="POST" id="search_form">
                 <input type="text" name="search" placeholder="Buscar" required autofocus/>
-            </div>
-            <input type="submit" value="Buscar" name="search_submit">
-        </form>
+            </form>
+        </div>
     </div>
-</div>
-<div id="crud_items">
     <?
     $products = $model->getProductList();
     ?>
@@ -31,7 +29,6 @@
         </tr>
         <? foreach ($products as $p): ?>
         <tr>
-               
             <td>
                 <img src="<?=ASSET_URL . $p->getImage() ?>" alt="product">
             </td>
@@ -41,8 +38,10 @@
             <td><?= $p->getPrice() ?></td>
             <td><?= $p->getDiscount() ?></td>
             <td>
-                <a href="/product/edit/<?= $p->getID() ?>">Editar</a>
-                <a class='delete' href="/product/delete/<?= $p->getID() ?>">Eliminar</a>
+                <div class="item-ops">
+                    <a class="btn black" href="/product/edit/<?= $p->getID() ?>">Editar</a>
+                    <a class='btn red' href="/product/delete/<?= $p->getID() ?>">Eliminar</a>
+                </div>
             </td>
         </tr>
         <? endforeach; ?>
