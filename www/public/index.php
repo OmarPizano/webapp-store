@@ -1,5 +1,5 @@
 <?php
-require('../tienda/config/app_config.php');
+require_once('../tienda/config/app_config.php');
 require(BASE_DIR . '/tienda/config/db.php');
 require(BASE_DIR . '/vendor/autoload.php');
 

@@ -23,7 +23,7 @@
                     <h1>{VIEW_TITLE}</h1>
                 </div>
                 <div class="page-alert">
-                    <? tienda\core\ui\UiHelper::checkAlert() ?>
+                    <?php tienda\core\ui\UiHelper::checkAlert() ?>
                 </div>
                 <div class="page-content">
                     {CONTENT}

@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\models;
 use tienda\domain\User;
 

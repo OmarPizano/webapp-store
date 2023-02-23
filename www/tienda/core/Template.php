@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\core;
 
 class Template

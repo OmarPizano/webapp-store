@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\core;
 use tienda\core\Database;
 
@@ -186,7 +186,7 @@ abstract class ActiveRecord
             $property = static::$table_columns[$i];
             if ($property === static::$primary_key) { continue; }
             $query .= static::$table_columns[$i] . ' = ';
-            if (empty($this->{$property})) {
+            if (!isset($this->{$property})) {
                 $query .= 'NULL';
             } else {
                 $query .= (is_string($this->{$property})) ? '\'' . $this->{$property} . '\'' : $this->{$property};

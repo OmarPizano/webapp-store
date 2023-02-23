@@ -1,14 +1,14 @@
-<? 
+<?php 
 $cat_model = new tienda\models\CategoriesModel();
 $cat_model->selectAll();
 $cats = $cat_model->getAll();
 ?>
 
-<form class="product-edit-form" action="/product/edit/<?=$model->id?>", method="POST">
+<form class="product-edit-form" action="/product/edit/<?=$model->id?>" method="POST">
     <div class="photo_box">
         <img src="<?= ASSET_URL . $model->product_image ?>" alt="product">
         <label for="image">Seleccione una nueva imagen si lo desea.</label>
-        <input id="image" type="file", name='product_image', accept="image/png">
+        <input id="image" type="file" name='product_image' accept="image/png">
     </div>
     <div class="data_box">
         <label>Nombre</label>
@@ -17,13 +17,13 @@ $cats = $cat_model->getAll();
         <textarea name="product_description" ><?= $model->product_description ?></textarea>
         <label>Categoría</label>
         <select name="category_id">
-            <? foreach ($cats as $cat) : ?>
-                <? if ($cat->id === $model->category_id) : ?>
+            <?php foreach ($cats as $cat) : ?>
+                <?php if (intval($cat->id) === intval($model->category_id)) : ?>
                     <option selected value="<?=$cat->id?>"><?=$cat->category_name?></option>
-                <? else :?>
+                <?php else :?>
                     <option value="<?=$cat->id?>"><?=$cat->category_name?></option>
-                <? endif ?>
-            <? endforeach ?>
+                <?php endif ?>
+            <?php endforeach ?>
         </select>
         <label>Stock</label>
         <input type="number" name="product_stock" value="<?=$model->product_stock?>" required>

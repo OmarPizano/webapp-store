@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\core;
 use tienda\models\CategoriesModel;
 use tienda\models\UserModel;

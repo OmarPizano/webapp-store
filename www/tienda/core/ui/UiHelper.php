@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\core\ui;
 use tienda\core\Session;
 

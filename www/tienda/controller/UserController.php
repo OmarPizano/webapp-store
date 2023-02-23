@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\controller;
 use tienda\core\Request;
 use tienda\core\Response;

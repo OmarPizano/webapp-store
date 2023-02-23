@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\domain;
 use tienda\core\ActiveRecord;
 

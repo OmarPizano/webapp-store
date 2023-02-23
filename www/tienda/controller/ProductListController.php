@@ -1,4 +1,4 @@
-<?
+<?php
 namespace tienda\controller;
 use tienda\core\Request;
 use tienda\core\Response;
@@ -34,6 +34,13 @@ class ProductListController
             $model = new ProductListModel();
             if ($request->getMethod() === 'POST') {
                 // Guardar los cambios
+                $model->loadMoel($request->dump());
+                if ($model->updateProduct()) {
+                    Session::alert('Producto modificado.', true);
+                    Response::redirect('/product/admin');
+                } else {
+                    Session::alert('Fallo al actualizar el producto.', false);
+                }
             } else {
                 // Cargar el producto en el modelo
                 $model->loadProduct($request->query('id'));

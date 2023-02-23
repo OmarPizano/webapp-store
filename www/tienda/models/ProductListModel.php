@@ -1,17 +1,17 @@
-<?
+<?php
 namespace tienda\models;
 use tienda\domain\Product;
 
 class ProductListModel
 {
-    public $id = '';
-    public $category_id = '';
-    public $product_name = '';
-    public $product_description = '';
-    public $product_price = '';
-    public $product_stock = '';
-    public $product_discount = '';
-    public $product_image = '';
+    public int $id = 0;
+    public int $category_id = 0;
+    public string $product_name = '';
+    public string $product_description = '';
+    public float $product_price = 0.0;
+    public int $product_stock = 0;
+    public int $product_discount = 0;
+    public string $product_image = '';
 
     private $product_list = [];
     
@@ -35,7 +35,7 @@ class ProductListModel
         $list = Product::all();
         $this->product_list = [];
         foreach($list as $p) {
-            if (str_contains(strtolower($p->getName()), strtolower($search))) {
+            if (str_contains(strtolower($p->name), strtolower($search))) {
                 $this->product_list[] = $p;
             }
         }
@@ -52,6 +52,35 @@ class ProductListModel
             if (property_exists($this, $key)) {
                 $this->{$key} = $atr;
             }
+        }
+    }
+
+    public function loadMoel(array $request_dump) {
+        foreach ($request_dump as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
+
+    public function updateProduct() {
+        $p = Product::find($this->id);
+        $attrs = get_object_vars($p);
+        foreach ($attrs as $key => $atr) {
+            if (property_exists($this, $key)) {
+                if (empty($this->{$key})) {
+                    continue;
+                }
+                $p->{$key} = $this->{$key};
+            }
+        }
+        echo '<pre>'; var_dump($_FILES); echo '</pre>';
+        return $p->save();
+    }
+
+    private function checkFile(string $path) {
+        if (! file_exists($path)) {
+            return 1;
         }
     }
 }

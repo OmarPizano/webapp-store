@@ -1,4 +1,4 @@
-<? $products = $model->getProductList() ?>
+<?php $products = $model->getProductList() ?>
 <div class="crud">
     <div class="crud-ops">
         <a class="btn black" href="/product/new">Agregar</a>
@@ -9,29 +9,29 @@
     </div>
     <table>
         <tr>
-            <? foreach ($model->crud_names as $key => $name) : ?>
+            <?php foreach ($model->crud_names as $key => $name) : ?>
             <th><?=$name?></th>
-            <? endforeach; ?>
+            <?php endforeach; ?>
             <th>Operaciones</th>
         </tr>
-        <? foreach ($products as $p): ?>
+        <?php foreach ($products as $p): ?>
         <tr>
-            <? foreach ($model->crud_names as $key => $name) : ?>
-                <? if (str_contains(strtolower($name), 'image'))  :?>
+            <?php foreach ($model->crud_names as $key => $name) : ?>
+                <?php if (str_contains(strtolower($name), 'image'))  :?>
                     <td>
                         <img src="<?=ASSET_URL . $p->{$key} ?>" alt="product">
                     </td>
-                <? else :?>
+                <?php else :?>
                     <td><?=$p->{$key}?></th>
-                <? endif?>
-            <? endforeach; ?>
+                <?php endif?>
+            <?php endforeach; ?>
             <td>
                 <div class="item-ops">
-                    <a class="btn black" href="/product/edit/<?= $p->getID() ?>">Editar</a>
-                    <a class='btn red' href="/product/delete/<?= $p->getID() ?>">Eliminar</a>
+                    <a class="btn black" href="/product/edit/<?= $p->id ?>">Editar</a>
+                    <a class='btn red' href="/product/delete/<?= $p->id ?>">Eliminar</a>
                 </div>
             </td>
         </tr>
-        <? endforeach; ?>
+        <?php endforeach ?>
     </table>
 </div>
