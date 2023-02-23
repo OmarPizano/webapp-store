@@ -29,7 +29,7 @@ class Form
     }
     public static function submit(string $text, string $name) {
         echo sprintf('
-            <input type="submit" class="btn btn-black" value="%s" name="%s">
+            <input class="btn black" type="submit" class="btn btn-black" value="%s" name="%s">
         ', $text, $name);
     }
 }

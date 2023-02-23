@@ -186,6 +186,8 @@ main .alert {
     grid-auto-flow: column;
     padding: 20px;
     gap: 20px;
+    width: 100%;
+    justify-content: center;
 }
 .product {
     background-color: lightgray;
@@ -258,30 +260,36 @@ main .alert {
 .crud {
     display: grid;
     grid-template-rows: 60px 1fr;
+    width: 100%;
 }
 .crud-ops {
     display: grid;
     grid-template-columns: 1fr 0.5fr 1fr;
 }
-
 .crud-btns {
     grid-column: 1/2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
 }
-.crud-btns .btn, .crud-search .btn {
+.crud-btns .btn {
     width: 100px;
     height: 50%;
 }
 .crud-search {
     grid-column: 3/4;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
     align-items: center;
+    justify-items: end;
 }
 .crud-search input[type=text] {
-    height: 30px;
+    width: 300px;
+    height: 50%;
+}
+.crud-search .btn {
+    width: 100px;
+    height: 50%;
 }
 
 /* TABLE */
@@ -317,22 +325,22 @@ table img {
     height: 25px;
 }
 
-
 /* PRODUCT EDIT FORM */
 .product-edit-form {
     display: grid;
-    grid-template-columns: 1fr 3fr 3fr 1fr;
-    justify-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5fr 0.7fr;
     gap: 10px;
+    width: 100%;
 }
 
 .photo_box {
-    grid-column: 2/3;
-    grid-row: 1/3;
+    grid-column: 1/2;
+    grid-row: 1/2;
     display: grid;
     justify-items: center;
     padding: 10px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .photo_box img {
@@ -342,19 +350,20 @@ table img {
 }
 
 .photo_box_button {
-    padding: 10px;
     display: grid;
+    grid-template-rows: 1fr 1fr;
     align-items: center;
+    justify-items: center;
 }
 
 .data_box {
-    grid-column: 3/4;
-    grid-row: 1/3;
+    grid-column: 2/3;
+    grid-row: 1/2;
     display: grid;
     grid-template-rows: 2fr 1fr;
     background-color: lightgray;
     padding: 10px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 .data_box input,
 .data_box textarea,
@@ -379,68 +388,28 @@ table img {
 .numeric_data {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
+    align-content: start;
     padding: 15px;
 }
 
-.numeric_data input[type=number] {
-    width: 100px;
+.numeric_data .data {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
 }
 
 .submit_box {
-    grid-column: 2/4;
-    grid-row: 3/4;
+    grid-column: 1/3;
+    grid-row: 2/3;
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
-}
-
-.submit_box input[type=submit] {
-    width: 250px;
-    height: 30px;
-    font-size: 14px;
-    margin: 10px auto;
-    margin-right: 10px; /*si hay problemas quitar este*/
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-}
-
-.submit_box a {
-    display: grid;
     align-items: center;
-    width: 250px;
-    height: 30px;
-    font-size: 14px;;
-    text-decoration: none;
-    margin: 10px auto;
-    background-color: #663333;
-    color: white;
-    border: 1px solid black;
-}
-.submit_box input[type=submit]:hover {
-    background-color: white;
-    color: black;
-}
-
-.submit_box a:hover {
-    background-color: #ff0033;
-    color: white;
-}
-
-
-/* FORMS GENERICOS */
-
-input {
-    display: block;
-    text-align: center;
     justify-items: center;
-    margin: 10px auto;
-    width: 500px;
-    padding: 5px;
-    box-sizing: border-box;
 }
-input[type=submit] {
-    width: 250px;
+
+.submit_box .btn {
+    width: 200px;
+    height: 30px;
 }

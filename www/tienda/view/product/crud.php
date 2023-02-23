@@ -7,12 +7,10 @@
             <a class="btn black" href="/product/export_all">Exportar</a>
             <a class="btn red" href="/product/delete_all">Borrar Todo</a>
         </div>
-        <div class="crud-search">
+        <form class="crud-search" action="/product/main" method="POST">
             <input class="btn black" type="submit" value="Buscar" name="search_submit" form="search_form">
-            <form action="/product/admin", method="POST" id="search_form">
-                <input type="text" name="search" placeholder="Buscar" required autofocus/>
-            </form>
-        </div>
+            <input type="text" name="search" placeholder="Buscar" required autofocus/>
+        </form>
     </div>
     <?
     $products = $model->getProductList();
