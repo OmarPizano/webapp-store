@@ -25,18 +25,14 @@ class ProductList
         echo sprintf('
             <div class="product">
                 <img src="%s" alt="item">
+                <p class="product-name">PRODUCT NAME NAME NAME NAME NAME</p>
                 <div class="product-details">
-                    <div class="product-price">
-                        <p class="price-current">%s</p>
-                        <p class="price-discount">%s</p>
-                    </div>
+                    <p class="price-current">%s</p>
+                    <p class="price-discount">%s</p>
                     <p class="price-original">%s</p>
                     <div class="product-btns">
-                        <a href="%s" class="btn btn-black">Comprar</a>
-                        <a href="%s" class="btn btn-normal">+</a>
-                    </div>
-                    <div class="product-desc">
-                        <p>%s</p>
+                        <a href="%s" class="btn black">Comprar</a>
+                        <a href="%s" class="btn normal">+</a>
                     </div>
                 </div>
             </div>

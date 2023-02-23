@@ -69,8 +69,6 @@ nav li {
 }
 .btn, .btn:visited {
     display: flex;
-    height: 50%;
-    width: 100px;
     align-items: center;
     justify-content: space-around;
     text-decoration: none;
@@ -86,6 +84,8 @@ nav li {
     background-color: black;
 }
 nav a, nav a:visited {
+    width: 100px;
+    height: 50%;
     border: none !important;
     border-bottom: 1px solid black !important;
 }
@@ -98,7 +98,8 @@ nav a, nav a:visited {
     justify-content: space-evenly;
 }
 .user .btn {
-    height: 30% !important;
+    width: 100px;
+    height: 30%;
 }
 .user-profile {
     display: grid;
@@ -180,63 +181,66 @@ main h1 {
 /* CONTENIDO: Lista de productos */
 .product-list {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-auto-flow: column;
+    padding: 20px;
+    gap: 20px;
 }
 .product {
     background-color: lightgray;
     width: 200px;
-    margin: 10px 15px;
     font-size: 12px;
     box-shadow: 1px 1px 7px black;
-    /* height: fit-content; */
-    max-height: 300px;
-}
-.product-details {
-    padding: 10px;
+    height: fit-content;
+    display: grid;
+    grid-template-rows: 150px 30px 80px;
+    gap: 5px;
 }
 .product img {
     display: block;
-    width: 200px;
-    height: 150px;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
     background-color: white;
-    margin-bottom: 5px;
 }
-.product-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.product-name {
+    align-self: center;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.product-details {
+    display: grid;
+    grid-template-rows: 2fr 1fr 2fr;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
 }
 .price-current {
+    grid-column: 1/4;
+    grid-row: 1/2;
     font-size: 20px;
     font-weight: bold;
 }
 .price-discount {
+    grid-column: 4/5;
+    grid-row: 1/2;
     font-size: 13px;
     font-style: italic;
+    justify-self: end;
 }
 .price-original {
+    grid-column: 1/4;
+    grid-row: 2/3;
     font-size: 13px;
     text-decoration: line-through; 
     text-align: start;
-    margin-bottom: 10px;
-}
-.product-desc {
-    font-size: 12px; 
 }
 .product-btns {
-    display: flex;
-    margin-top: 5px;
-} 
-.product .btn {
-    font-size: 10px;
+    grid-row: 3/4;
+    grid-column: 1/5;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 10px;
 }
-.product .btn-black {
-    width: 80%;
-}
-.product .btn-normal {
-    width: 10%;
-    margin-left: 10px;
+.product-btns .btn {
+    display: grid;
 }
 
 /* CONTENIDO: Página de información (error,etc) */
