@@ -1,18 +1,15 @@
 <?
-use tienda\core\Session;
-use tienda\core\ui\Menu;
-
 $model->selectAll();
 $top = $model->getTop();
-
-Menu::begin();
-if (Session::get('admin')) {
-    Menu::item(BASE_URL . '/product/admin', 'Productos');
-} else {
-    Menu::item(BASE_URL, 'Buscar');
-    foreach ($top as $category) {
-        Menu::item(BASE_URL . '/product/cat/' . $category->id, $category->category_name);
-    }
-}
-Menu::item(BASE_URL, 'Acerca de');
-Menu::end();
+?>
+<ul>
+    <? if (tienda\core\Session::get('admin')) : ?>
+        <li><a class="btn normal" href="/product/admin">Productos</a></li>
+    <? else : ?>
+        <li><a class="btn normal" href="/product/search">Buscar</a></li>
+        <? foreach ($top as $category) : ?>
+            <li><a class="btn normal" href="/category/<?= $category->id ?>"><?= $category->category_name ?></a></li>
+        <? endforeach ?>
+        <li><a class="btn normal" href="/about">Acerca De</a></li>
+    <? endif ?>
+</ul>

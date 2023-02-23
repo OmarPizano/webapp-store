@@ -1,5 +1,3 @@
-<h1>Administración de Productos</h1>
-
 <div class="crud">
     <div class="crud-ops">
         <div class="crud-btns">

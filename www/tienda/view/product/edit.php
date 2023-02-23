@@ -1,4 +1,3 @@
-<h1>Editar Producto</h1>
 <form action="/product/edit/<?=$model->id?>", method="POST">
     <div class="product-edit-form">
         <div class="photo_box">

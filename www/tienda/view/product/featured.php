@@ -1,19 +1,17 @@
-<h1>Productos Destacados</h1>
-<?
-use tienda\core\ui\ProductList;
-use tienda\core\ui\UiHelper;
-
-UiHelper::checkAlert();
-
-ProductList::begin();
-foreach ($model->getProductList() as $product) {
-    ProductList::item(
-        ASSET_URL . $product->getImage(),
-        $product->getCurrentPrice(),
-        $product->getDiscount(),
-        $product->getPrice(),
-        '/user/buy/' . $product->getID(),
-        '/user/add/' . $product->getID(),
-        $product->getName());
-}
-ProductList::end();
+<div class="product-list">
+<? foreach ($model->getProductList() as $prod) : ?>
+    <div class="product">
+        <img src="<?=ASSET_URL . $prod->getImage()?>" alt="item">
+        <p class="product-name"><?=$prod->getName()?></p>
+        <div class="product-details">
+            <p class="price-current"><?=$prod->getCurrentPrice()?></p>
+            <p class="price-discount"><?=$prod->getDiscount()?></p>
+            <p class="price-original"><?=$prod->getPrice()?></p>
+            <div class="product-btns">
+                <a href="/user/buy/<?=$prod->getID()?>" class="btn black">Comprar</a>
+                <a href="/user/add/<?=$prod->getID()?>" class="btn normal">+</a>
+            </div>
+        </div>
+    </div>
+<? endforeach ?>
+</div>
