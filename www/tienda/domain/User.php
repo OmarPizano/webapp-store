@@ -24,18 +24,4 @@ class User extends ActiveRecord
     public string $user_image = '';
     public string $user_address = '';
 
-    public function __construct() {
-        $this->setID();
-    }
-
-    public function prepare(){
-        $this->user_name = strtolower($this->user_name);
-        $this->user_email = strtolower($this->user_email);
-        $this->user_password = password_hash($this->user_password, PASSWORD_BCRYPT);
-        if ($this->user_role != 'admin' and $this->user_role != 'client') {
-            $this->user_role = 'client';
-        }
-        $this->user_image = $this->user_image ?? '';
-        $this->user_address = $this->user_address ?? '';
-    }
 }

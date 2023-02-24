@@ -1,5 +1,5 @@
 <div class="product-list">
-<?php foreach ($model->getProductList() as $prod) : ?>
+<?php foreach ($list as $prod) : ?>
     <div class="product">
         <img src="<?=ASSET_URL . $prod->product_image?>" alt="item">
         <p class="product-name"><?=$prod->product_name?></p>

@@ -17,8 +17,8 @@ class Template
         $this->layout = str_replace("{TITLE}", $title, $this->layout);
     }
 
-    public function loadMenu($model) {
-        $menu = $this->loadTemplate('layout/menu', $model);
+    public function loadMenu($option_list) {
+        $menu = $this->loadTemplate('layout/menu', $option_list);
         $this->layout = str_replace("{MENU}", $menu, $this->layout);
     }
 
@@ -27,13 +27,13 @@ class Template
         $this->layout = str_replace("{FOOTER}", $footer, $this->layout);
     }
 
-    public function loadUser($model) {
-        $content = $this->loadTemplate('layout/user', $model);
+    public function loadUser($login_data) {
+        $content = $this->loadTemplate('layout/user', $login_data);
         $this->layout = str_replace("{USER}", $content, $this->layout);
     }
 
-    public function loadContent($model) {
-        $content = $this->loadTemplate($this->template_path, $model);
+    public function loadContent($data) {
+        $content = $this->loadTemplate($this->template_path, $data);
         $this->layout = str_replace("{CONTENT}", $content, $this->layout);
     }
 
@@ -41,8 +41,8 @@ class Template
         return $this->layout;
     }
 
-    private function loadTemplate(string $path, $model = false) {
-        extract(['model' => $model]);
+    private function loadTemplate(string $path, array $data = []) {
+        extract($data);
         ob_start();
         require_once(BASE_DIR . '/tienda/view/' . $path . '.php');
         return ob_get_clean();

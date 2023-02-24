@@ -1,7 +1,7 @@
 <form class="login-form" action="/login" method="POST">
     <div>
         <label for="username">Usuario</label>
-        <input type="text" name="user_name" id="username" value="<?= $model->user_name ?>" required autofocus>
+        <input type="text" name="user_name" id="username" value="<?= $user_name ?>" required autofocus>
     </div>
     <div>
         <label for="password">Contraseña</label>

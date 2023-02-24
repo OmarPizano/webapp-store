@@ -25,7 +25,7 @@ class UserController
                 Session::alert('Credenciales inválidas.', false);
             }
         }
-        return new View($model, 'user/login', 'Iniciar sesión');
+        return new View(['user_name' => $model->user_name], 'user/login', 'Iniciar sesión');
     }
 
     public static function logout (Request $request) {
@@ -52,6 +52,9 @@ class UserController
                 Session::alert('Fallo al registrar el usuario. Intente de nuevo.', false);
             }
         }
-        return new View($model, 'user/signup', 'Registro de Usuario');
+        $data['user_name'] = $model->user_name;
+        $data['user_email'] = $model->user_email;
+        $data['user_address'] = $model->user_address;
+        return new View($data, 'user/signup', 'Registro de Usuario');
     }
 }

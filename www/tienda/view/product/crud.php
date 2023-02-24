@@ -1,22 +1,21 @@
-<?php $products = $model->getProductList() ?>
 <div class="crud">
     <div class="crud-ops">
         <a class="btn black" href="/product/new">Agregar</a>
         <form action="/product/admin" method="POST">
             <input class="btn black" type="submit" value="Buscar">
-            <input type="text" name="search" value="<?=$model->search?>" required autofocus/>
+            <input type="text" name="search" value="<?=$search?>" required/>
         </form>
     </div>
     <table>
         <tr>
-            <?php foreach ($model->crud_names as $key => $name) : ?>
+            <?php foreach ($crud_names as $key => $name) : ?>
             <th><?=$name?></th>
             <?php endforeach; ?>
             <th>Operaciones</th>
         </tr>
         <?php foreach ($products as $p): ?>
         <tr>
-            <?php foreach ($model->crud_names as $key => $name) : ?>
+            <?php foreach ($crud_names as $key => $name) : ?>
                 <?php if (str_contains(strtolower($name), 'image'))  :?>
                     <td>
                         <img src="<?=ASSET_URL . $p->{$key} ?>" alt="product">

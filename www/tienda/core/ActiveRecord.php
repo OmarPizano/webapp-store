@@ -44,7 +44,7 @@ abstract class ActiveRecord
      */
     public function save()
     {
-        if (static::existID($this->id)) {
+        if (static::existID(static::id)) {
             $query = static::makeQueryUpdateByID();
         } else {
             $query = static::makeQueryInsert();
@@ -59,7 +59,7 @@ abstract class ActiveRecord
      */
     public function delete()
     {
-        if (static::existID($this->id)) {
+        if (static::existID(static::id)) {
             $query = static::makeQueryDeleteByID();
             $result = static::executeQuery($query);
             return ($result === true) ? true: false;
@@ -78,8 +78,7 @@ abstract class ActiveRecord
         $query = 'SELECT SUBSTR(REPLACE(UUID(),\'-\',\'\'),1,6) as uuid';
         $result = static::executeQuery($query);
         if ($result === false) { return false; }
-        $this->id = $result[0]['uuid'];
-        return true;
+        return $result[0]['uuid'];
     }
    
     /**
@@ -101,7 +100,7 @@ abstract class ActiveRecord
         $object = new static;
         foreach ($row as $key => $value) {
             if (property_exists($object, $key)) {
-                $object->$key = (is_null($value)) ? '' : $value;
+                $object->{$key} = (is_null($value)) ? '' : $value;
             }
         }
         return $object;
@@ -193,7 +192,7 @@ abstract class ActiveRecord
             }
             $query .= ($i+1 != $col_count) ? ', ':' ';
         }
-        $query .= 'WHERE ' . static::$primary_key . ' = \'' . $this->id . '\'';
+        $query .= 'WHERE ' . static::$primary_key . ' = \'' . static::id . '\'';
         return $query;
     }
     
@@ -204,7 +203,7 @@ abstract class ActiveRecord
     private function makeQueryDeleteByID()
     {
         $query = 'DELETE FROM ' . static::$table_name;
-        $query .= ' WHERE ' . static::$primary_key . ' = \'' . $this->id . '\'';
+        $query .= ' WHERE ' . static::$primary_key . ' = \'' . static::id . '\'';
         return $query;
     }
 }

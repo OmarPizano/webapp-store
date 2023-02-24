@@ -4,6 +4,7 @@ use tienda\core\Request;
 use tienda\core\Response;
 use tienda\core\Session;
 use tienda\core\View;
+use tienda\models\CategoriesModel;
 use tienda\models\ProductListModel;
 
 class ProductListController
@@ -11,7 +12,8 @@ class ProductListController
     public static function getFeatured(Request $request) {
         $model = new ProductListModel();
         $model->selectAllProducts();
-        return new View($model, 'product/featured', 'Productos Destacados');
+        $list = $model->getProductList();
+        return new View(['list' => $list], 'product/featured', 'Productos Destacados');
     }
 
     public static function crudProducts(Request $request) {
@@ -22,7 +24,14 @@ class ProductListController
             } else {
                 $model->selectAllProducts();
             }
-            return new View($model, 'product/crud', 'Administración de Productos');
+            $search = $model->search;
+            $crud_names = $model->crud_names;
+            $products = $model->getProductList();
+            return new View([
+                'search' => $search,
+                'crud_names' => $crud_names,
+                'products' => $products
+            ], 'product/crud', 'Administración de Productos');
         } else {
             Session::alert('Permiso denegado al recurso.', false);
             Response::redirect('/');
@@ -44,13 +53,24 @@ class ProductListController
             } else {
                 // Cargar el producto en el modelo
                 $model->loadProduct($request->query('id'));
+                $catmodel = new CategoriesModel();
+                $catmodel->selectAll();
+                $cats = $catmodel->getAll();
             }
-            return new View($model, 'product/edit', 'Editar un Producto');
+            return new View(
+                ['id' => $model->id,
+                'product_image' => $model->product_image,
+                'product_name' => $model->product_name,
+                'product_description' => $model->product_description,
+                'category_id' => $model->category_id,
+                'product_stock' => $model->product_stock,
+                'product_price' => $model->product_price,
+                'product_discount' => $model->product_discount,
+                'cats' => $cats,
+            ], 'product/edit', 'Editar un Producto');
         } else {
             Session::alert('Permiso denegado al recurso.', false);
             Response::redirect('/');
         }
-
     }
-
 }
