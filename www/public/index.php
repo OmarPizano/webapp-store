@@ -24,6 +24,7 @@ Router::get('/product/edit/{id}', [ProductListController::class, 'editProduct'])
 Router::post('/product/edit/{id}', [ProductListController::class, 'editProduct']);
 Router::get('/product/new', [ProductListController::class, 'newProduct']);
 Router::post('/product/new', [ProductListController::class, 'newProduct']);
+Router::post('/product/delete/{id}', [ProductListController::class, 'deleteProduct']);
 
 $request = new Request;
 

@@ -130,6 +130,11 @@ class ProductListModel
         return $p->save();
     }
 
+    public function deleteProduct(string $id) {
+        $p = Product::find($id);
+        return $p->delete();
+    }
+
     private function checkFile(string $path) {
         $size = filesize($path);
         $type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $path);

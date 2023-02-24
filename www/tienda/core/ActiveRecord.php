@@ -59,7 +59,7 @@ abstract class ActiveRecord
      */
     public function delete()
     {
-        if (static::existID(static::id)) {
+        if (static::existID($this->id)) {
             $query = static::makeQueryDeleteByID();
             $result = static::executeQuery($query);
             return ($result === true) ? true: false;
@@ -203,7 +203,7 @@ abstract class ActiveRecord
     private function makeQueryDeleteByID()
     {
         $query = 'DELETE FROM ' . static::$table_name;
-        $query .= ' WHERE ' . static::$primary_key . ' = \'' . static::id . '\'';
+        $query .= ' WHERE ' . static::$primary_key . ' = \'' . $this->id . '\'';
         return $query;
     }
 }

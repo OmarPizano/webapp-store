@@ -27,7 +27,10 @@
             <td>
                 <div class="item-ops">
                     <a class="btn black" href="/product/edit/<?= $p->id ?>">Editar</a>
-                    <a class='btn red' href="/product/delete/<?= $p->id ?>">Eliminar</a>
+                    <!-- <a class='btn red' href="/product/delete/<?= $p->id ?>">Eliminar</a> -->
+                    <form action="/product/delete/<?=$p->id?>" method="POST">
+                        <input type="submit" class="btn red" name="delete" value="Eliminar">
+                    </form>
                 </div>
             </td>
         </tr>

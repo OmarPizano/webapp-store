@@ -107,4 +107,19 @@ class ProductListController
         }
 
     }
+
+    public static function deleteProduct(Request $request) {
+        if (Session::get('user_id') and Session::get('admin')) {
+            $model = new ProductListModel();
+            if ($model->deleteProduct($request->query('id'))) {
+                Session::alert('Producto eliminado.', true);
+                Response::redirect('/product/admin');
+            } else {
+                Session::alert('Fallo al eliminar el producto.', false);
+            }
+        } else {
+            Session::alert('Permiso denegado al recurso.', false);
+            Response::redirect('/');
+        }
+    }
 }
