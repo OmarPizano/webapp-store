@@ -27,7 +27,7 @@ class ProductListModel
         'category_id' => 'Categoría',
         'product_stock' => 'Stock',
         'product_price' => 'Precio',
-        'product_discount' => 'Descuento',
+        'product_discount' => 'Rebaja',
     ];
 
     public $search = '';

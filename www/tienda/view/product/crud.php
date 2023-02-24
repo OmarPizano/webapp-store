@@ -1,6 +1,6 @@
 <div class="crud">
     <div class="crud-ops">
-        <a class="btn black" href="/product/new">Agregar</a>
+        <a class="btn red" href="/product/new">Agregar</a>
         <form action="/product/admin" method="POST">
             <input class="btn black" type="submit" value="Buscar">
             <input type="text" name="search" value="<?=$search?>" required/>
