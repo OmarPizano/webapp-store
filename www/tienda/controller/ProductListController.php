@@ -141,4 +141,22 @@ class ProductListController
         }
 
     }
+    public static function browseCategory(Request $request) {
+        $model = new ProductListModel();
+        $category = $request->query('category');
+        if (!$category) {
+            Session::alert('Categoría no encontrada', false);
+            Response::redirect('/');
+        } else {
+            // buscar productos por categ
+            $catname = $model->selectProductsByCategory($category);
+            $list = $model->getProductList();
+            if (count($list) === 0) {
+                Session::alert('No se encontraron resultados', false);
+                Response::redirect('/');
+            }
+            return new View(['list' => $list], 'product/list', 'Categoría: ' . $catname);
+        }
+
+    }
 }

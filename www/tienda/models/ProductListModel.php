@@ -1,6 +1,7 @@
 <?php
 namespace tienda\models;
 use tienda\core\Request;
+use tienda\domain\Category;
 use tienda\domain\Product;
 
 class ProductListModel
@@ -133,6 +134,18 @@ class ProductListModel
     public function deleteProduct(string $id) {
         $p = Product::find($id);
         return $p->delete();
+    }
+
+    public function selectProductsByCategory(string $cat_id) {
+        $cat = Category::find($cat_id);
+        if (!$cat) { return false; }
+        $all = Product::all();
+        foreach ($all as $p) {
+            if (intval($p->category_id) === intval($cat_id)) {
+                $this->product_list[] = $p;
+            }
+        }
+        return $cat->category_name;
     }
 
     private function checkFile(string $path) {

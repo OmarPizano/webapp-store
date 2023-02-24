@@ -29,6 +29,8 @@ Router::post('/product/delete/{id}', [ProductListController::class, 'deleteProdu
 Router::get('/product/search', [ProductListController::class, 'userSearch']);
 Router::post('/product/search', [ProductListController::class, 'userSearch']);
 
+Router::get('/category/{category}', [ProductListController::class, 'browseCategory']);
+
 $request = new Request;
 
 Router::resolve($request);
