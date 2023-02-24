@@ -44,7 +44,7 @@ abstract class ActiveRecord
      */
     public function save()
     {
-        if (static::existID(static::id)) {
+        if (static::existID($this->id)) {
             $query = static::makeQueryUpdateByID();
         } else {
             $query = static::makeQueryInsert();
@@ -192,7 +192,7 @@ abstract class ActiveRecord
             }
             $query .= ($i+1 != $col_count) ? ', ':' ';
         }
-        $query .= 'WHERE ' . static::$primary_key . ' = \'' . static::id . '\'';
+        $query .= 'WHERE ' . static::$primary_key . ' = \'' . $this->id . '\'';
         return $query;
     }
     

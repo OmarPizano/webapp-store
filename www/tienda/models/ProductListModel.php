@@ -87,7 +87,6 @@ class ProductListModel
                     $target = BASE_DIR . '/public/assets/products';
                     $new_path = $target . '/' . $filename . '.' . $ext;
                     if (!copy($path, $new_path)) {
-                        echo '<pre>'; var_dump($new_path); echo '</pre>';
                         return false;
                     }
                     $p->{$key} = '/products/' . $filename . '.' . $ext;
@@ -97,6 +96,37 @@ class ProductListModel
                 }
             }
         }
+        return $p->save();
+    }
+
+    public function createProduct() {
+        $p = new Product();
+        $attrs = get_object_vars($this);
+        foreach ($attrs as $key => $atr) {
+            if (property_exists($p, $key)) {
+                if ($key == 'id') {
+                    continue;
+                }
+                if ($key === 'product_image') {
+                    $path = $this->product_image;
+                    $ext = $this->checkFile($path);
+                    if (!$ext) {
+                        return false;
+                    }
+                    $filename = basename($path);
+                    $target = BASE_DIR . '/public/assets/products';
+                    $new_path = $target . '/' . $filename . '.' . $ext;
+                    if (!copy($path, $new_path)) {
+                        return false;
+                    }
+                    $p->{'product_image'} = '/products/' . $filename . '.' . $ext;
+                    unlink($path);
+                } else {
+                    $p->{$key} = $this->{$key};
+                }
+            }
+        }
+        $p->id = 0;     // para crear incremental
         return $p->save();
     }
 

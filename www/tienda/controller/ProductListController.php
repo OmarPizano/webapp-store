@@ -73,4 +73,38 @@ class ProductListController
             Response::redirect('/');
         }
     }
+
+    public static function newProduct(Request $request) {
+        if (Session::get('user_id') and Session::get('admin')) {
+            $model = new ProductListModel();
+            if ($request->getMethod() === 'POST') {
+                $model->loadModel($request->dump());
+                if ($model->createProduct()) {
+                    Session::alert('Producto agregado.', true);
+                    Response::redirect('/product/admin');
+                } else {
+                    Session::alert('Fallo al crear el producto.', false);
+                }
+            }
+            // Cargar la vista
+            $catmodel = new CategoriesModel();
+            $catmodel->selectAll();
+            $cats = $catmodel->getAll();
+            return new View(
+                ['id' => $model->id,
+                'product_image' => $model->product_image,
+                'product_name' => $model->product_name,
+                'product_description' => $model->product_description,
+                'category_id' => $model->category_id,
+                'product_stock' => $model->product_stock,
+                'product_price' => $model->product_price,
+                'product_discount' => $model->product_discount,
+                'cats' => $cats,
+            ], 'product/new', 'Crear un Producto');
+        } else {
+            Session::alert('Permiso denegado al recurso.', false);
+            Response::redirect('/');
+        }
+
+    }
 }
