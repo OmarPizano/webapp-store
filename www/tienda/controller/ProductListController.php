@@ -13,7 +13,7 @@ class ProductListController
         $model = new ProductListModel();
         $model->selectAllProducts();
         $list = $model->getProductList();
-        return new View(['list' => $list], 'product/featured', 'Productos Destacados');
+        return new View(['list' => $list], 'product/list', 'Productos Destacados');
     }
 
     public static function crudProducts(Request $request) {
@@ -121,5 +121,24 @@ class ProductListController
             Session::alert('Permiso denegado al recurso.', false);
             Response::redirect('/');
         }
+    }
+
+    public static function userSearch(Request $request) {
+        $model = new ProductListModel();
+        $pattern = $request->query('pattern');
+        if (!$pattern) {
+            // mostrar barra de busqueda
+            return new View(['pattern' => $pattern], 'product/user_search', 'Búsqueda');
+        } else {
+            // buscar
+            $model->searchProducts($pattern);
+            $list = $model->getProductList();
+            if (count($list) === 0) {
+                Session::alert('No se encontraron resultados', false);
+                return new View(['pattern' => $pattern], 'product/user_search', 'Resultados de la Búsqueda');
+            }
+            return new View(['list' => $list, 'pattern' => $pattern], 'product/list', 'Resultados de la Búsqueda');
+        }
+
     }
 }

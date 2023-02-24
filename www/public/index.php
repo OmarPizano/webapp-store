@@ -26,6 +26,9 @@ Router::get('/product/new', [ProductListController::class, 'newProduct']);
 Router::post('/product/new', [ProductListController::class, 'newProduct']);
 Router::post('/product/delete/{id}', [ProductListController::class, 'deleteProduct']);
 
+Router::get('/product/search', [ProductListController::class, 'userSearch']);
+Router::post('/product/search', [ProductListController::class, 'userSearch']);
+
 $request = new Request;
 
 Router::resolve($request);
