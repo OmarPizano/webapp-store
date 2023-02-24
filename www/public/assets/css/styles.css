@@ -194,6 +194,16 @@ nav a, nav a:visited {
     display: flex;
     justify-content: space-around;
 }
+.page-content label {
+    font-size: 13px;
+    font-weight: bold;
+}
+.page-content input,
+.page-content select,
+.page-content textarea {
+    font-size: 14px;
+    text-align: center;
+}
 
 /* CONTENIDO: LOGIN y SIGNUP*/
 .login-form, .signup-form {
