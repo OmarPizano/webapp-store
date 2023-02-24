@@ -41,7 +41,7 @@ class ProductListModel
         $list = Product::all();
         $this->product_list = [];
         foreach($list as $p) {
-            if (str_contains(strtolower($p->name), strtolower($search))) {
+            if (str_contains(strtolower($p->product_name), strtolower($search))) {
                 $this->product_list[] = $p;
             }
         }
