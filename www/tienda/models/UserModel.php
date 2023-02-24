@@ -39,6 +39,7 @@ class UserModel
 
     public function signup() {
         $user = new User();
+        $user->setID();
         $user->user_name = $this->user_name;
         $user->user_password = password_hash($this->user_password, PASSWORD_BCRYPT);
         $user->user_role = 'client';
