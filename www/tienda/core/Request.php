@@ -74,6 +74,10 @@ class Request
         foreach ($config[$method][0] as $key => $value) {
             $params[$key] = filter_input($config[$method][1], $key, FILTER_SANITIZE_SPECIAL_CHARS);
         }
+        foreach ($_FILES as $key => $file) {
+            $path = $file['tmp_name'];
+            $params[$key] = $path;
+        }
         return $params;
     }
 }

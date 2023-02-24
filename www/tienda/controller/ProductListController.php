@@ -34,7 +34,7 @@ class ProductListController
             $model = new ProductListModel();
             if ($request->getMethod() === 'POST') {
                 // Guardar los cambios
-                $model->loadMoel($request->dump());
+                $model->loadModel($request->dump());
                 if ($model->updateProduct()) {
                     Session::alert('Producto modificado.', true);
                     Response::redirect('/product/admin');

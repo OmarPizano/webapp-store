@@ -4,7 +4,7 @@ $cat_model->selectAll();
 $cats = $cat_model->getAll();
 ?>
 
-<form class="product-edit-form" action="/product/edit/<?=$model->id?>" method="POST">
+<form class="product-edit-form" action="/product/edit/<?=$model->id?>" method="POST" enctype="multipart/form-data">
     <div class="photo_box">
         <img src="<?= ASSET_URL . $model->product_image ?>" alt="product">
         <label for="image">Seleccione una nueva imagen si lo desea.</label>

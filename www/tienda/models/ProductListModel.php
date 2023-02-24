@@ -1,5 +1,6 @@
 <?php
 namespace tienda\models;
+use tienda\core\Request;
 use tienda\domain\Product;
 
 class ProductListModel
@@ -14,6 +15,11 @@ class ProductListModel
     public string $product_image = '';
 
     private $product_list = [];
+
+    private array $allowed_filetypes = [
+        'image/png' => 'png',
+        'image/jpeg' => 'jpg'
+    ];
     
     public $crud_names = [
         'product_image' => 'Imagen',
@@ -55,7 +61,7 @@ class ProductListModel
         }
     }
 
-    public function loadMoel(array $request_dump) {
+    public function loadModel(array $request_dump) {
         foreach ($request_dump as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
@@ -71,16 +77,41 @@ class ProductListModel
                 if (empty($this->{$key})) {
                     continue;
                 }
-                $p->{$key} = $this->{$key};
+                if ($key === 'product_image') {
+                    $path = $this->product_image;
+                    $ext = $this->checkFile($path);
+                    if (!$ext) {
+                        return false;
+                    }
+                    $filename = basename($path);
+                    $target = BASE_DIR . '/public/assets/products';
+                    $new_path = $target . '/' . $filename . '.' . $ext;
+                    if (!copy($path, $new_path)) {
+                        echo '<pre>'; var_dump($new_path); echo '</pre>';
+                        return false;
+                    }
+                    $p->{$key} = '/products/' . $filename . '.' . $ext;
+                    unlink($path);
+                } else {
+                    $p->{$key} = $this->{$key};
+                }
             }
         }
-        echo '<pre>'; var_dump($_FILES); echo '</pre>';
         return $p->save();
     }
 
     private function checkFile(string $path) {
+        $size = filesize($path);
+        $type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $path);
         if (! file_exists($path)) {
-            return 1;
+            return false;
         }
+        if ($size === 0 or $size > 1048576) {
+            return false;
+        }
+        if (! in_array($type, array_keys($this->allowed_filetypes))) {
+            return false;
+        }
+        return $this->allowed_filetypes[$type];
     }
 }
